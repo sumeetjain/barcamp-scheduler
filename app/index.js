@@ -6,26 +6,26 @@ const box = {
   height: "300px",
   backgroundColor: "#eee",
   fontFamily: "Helvetica"
-}
+};
 
 const title = {
   fontSize: "1.5em"
-}
+};
 
 const categoryImage = {
   float: "right"
-}
+};
 
 const name = {
   paddingTop: "25px",
   paddingLeft: "5px",
   float: "left",
   fontSize: "0.75em"
-}
+};
 
 const clear = {
   clear: "both"
-}
+};
 
 var Name = React.createClass({
   render: function() {
@@ -47,7 +47,7 @@ var CategoryImage = React.createClass({
   render: function() {
     return(
       <div style={categoryImage}><img src={this.props.image} width="40" /></div>
-    )
+    );
   }
 });
 
@@ -55,7 +55,7 @@ var ClearFloats = React.createClass({
   render: function() {
     return(
       <div style={clear}></div>
-    )
+    );
   }
 });
 
@@ -63,7 +63,7 @@ var Description = React.createClass({
   render: function() {
     return(
       <div>{this.props.description}</div>
-    )
+    );
   }
 });
 
