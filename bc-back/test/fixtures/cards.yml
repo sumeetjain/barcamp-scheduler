@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timeslot: 1
+  category: 1
+  name: MyString
+  title: MyString
+  description: MyString
+  state: 1
+
+two:
+  timeslot: 1
+  category: 1
+  name: MyString
+  title: MyString
+  description: MyString
+  state: 1
