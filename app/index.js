@@ -82,5 +82,3 @@ var Barcamp = React.createClass({
 });
 
 ReactDOM.render(<Barcamp />, document.getElementById('app'));
-
-<img src="./images/track_creative_2016.png" />
