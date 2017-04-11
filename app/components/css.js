@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Barcamp = require('./components/row.js')
 
 const box = {
   width: "300px",
@@ -28,4 +27,4 @@ const clear = {
   clear: "both"
 };
 
-ReactDOM.render(<Barcamp />, document.getElementById('app'));
+module.exports = CSS;
