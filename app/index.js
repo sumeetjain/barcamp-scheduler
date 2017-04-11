@@ -1,5 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var RowByTime = require('./components/row.js')
+var App = require('./components/app.js')
 
-ReactDOM.render(<RowByTime />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
