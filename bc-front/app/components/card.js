@@ -8,7 +8,8 @@ const boxC = {
   fontFamily: "Helvetica",
   marginRight: "10px",
   paddingLeft: "5px",
-  paddingRight: "5px"
+  paddingRight: "5px",
+  position: "relative"
 };
 
 const boxE = {
@@ -18,7 +19,8 @@ const boxE = {
   fontFamily: "Helvetica",
   marginRight: "10px",
   paddingLeft: "5px",
-  paddingRight: "5px"
+  paddingRight: "5px",
+  position: "relative"
 };
 
 const boxT = {
@@ -28,7 +30,8 @@ const boxT = {
   fontFamily: "Helvetica",
   marginRight: "10px",
   paddingLeft: "5px",
-  paddingRight: "5px"
+  paddingRight: "5px",
+  position: "relative"
 };
 
 const boxK = {
@@ -38,7 +41,8 @@ const boxK = {
   fontFamily: "Helvetica",
   marginRight: "10px",
   paddingLeft: "5px",
-  paddingRight: "5px"
+  paddingRight: "5px",
+  position: "relative"
 };
 
 const title = {
@@ -58,6 +62,15 @@ const name = {
 const clear = {
   clear: "both"
 };
+
+const letters = {
+  color: "pink",
+  position: "absolute",
+  bottom: "5px",
+  right: "15px",
+  fontSize: "1.75em",
+  fontFamily: "cursive"
+}
 
 var Name = React.createClass({
   getDefaultProps: function () {
@@ -92,18 +105,6 @@ var CategoryImage = React.createClass({
     }
   },
   render: function() {
-    // if (this.state.category == "Creative") {
-    //   this.props.image = './app/images/track_creative_2016.png'
-    // }
-    // else if (this.state.category == "Entrepreneur")  {
-    //   this.props.image = './app/images/track_entrepreneurship_2016.png'
-    // }
-    // else if (this.state.category == "Technology")  {
-    //   this.props.image = './app/images/track_technology_2016.png'
-    // }
-    // else if (this.state.category == "Kitchen Sink")  {
-    //   this.props.image = './app/images/track_kitchen-sink_2016.png'
-    // }
     return(
       <div style={categoryImage}><img src={this.props.image} width="40" /></div>
     );
@@ -131,6 +132,19 @@ var Description = React.createClass({
   }
 });
 
+var CategoryLetter = React.createClass({
+  getDefaultProps: function () {
+    return {
+      letter: 'N'
+    }
+  },
+  render: function() {
+    return(
+      <div style={letters}>{this.props.letter}</div>
+    );
+  }
+});
+
 var Card = React.createClass({
   getInitialState: function () {
     if (this.props.category == "Creative") {
@@ -139,15 +153,15 @@ var Card = React.createClass({
     }
     else if (this.props.category == "Entrepreneur")  {
       var url = "./app/images/track_entrepreneurship_2016.png"
-      var letter = "C"
+      var letter = "E"
     }
     else if (this.props.category == "Technology")  {
       var url = "./app/images/track_technology_2016.png"
-      var letter = "C"
+      var letter = "T"
     }
     else if (this.props.category == "Kitchen Sink")  {
       var url = "./app/images/track_kitchen-sink_2016.png"
-      var letter = "C"
+      var letter = "K"
     }
     return {
       catImageURL: url,
@@ -163,6 +177,8 @@ var Card = React.createClass({
   // handleSignUp: function () {
   //   this.setState({signUpControl: true});
   // },
+
+
   render: function() {
     if (this.state.category == "Creative") {
       box = boxC
@@ -183,25 +199,28 @@ var Card = React.createClass({
           <ClearFloats />
           <Title title="Sign up for this slot!" />
           <Description description="Click on this box to sign up!" />
+          <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
     } else if (this.state.state == "PENDING") {
       var currentState = (
         <div>
-          <CategoryImage />
+          <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
           <Title title="Get outta here!" />
           <Description description="Someone is currently attempting to sign up for this time slot. Bug them if you think they left it open in error :D" />
+          <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
     } else if (this.state.state == "SET") {
       var currentState = (
         <div>
           <Name name={this.state.name} />
-          <CategoryImage />
+          <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
           <Title title={this.state.title} />
           <Description description={this.state.description} />
+          <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
     }
