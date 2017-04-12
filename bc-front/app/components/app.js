@@ -4,15 +4,17 @@ var RowByTime = require('./row.js');
 var App = React.createClass({
   getInitialState: function() {
     return {
-      time: ''
+      time: []
     }
   },
   componentDidMount: function() {
+    var _this = this;
     xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:3000/ajaxtest');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
-      response = xhr.responseText
+      response = xhr.responseText;
+      _this.setState({time:response});
       debugger;
     }
     xhr.send();
@@ -23,7 +25,7 @@ var App = React.createClass({
   render: function() {
     return(
       <div>
-        <RowByTime time="9:00am" />
+        <RowByTime time={this.state.time} />
         <RowByTime time="9:30am" />
         <RowByTime time="10:00am" />
         <RowByTime time="10:30am" />
