@@ -23,7 +23,6 @@ var RowByTime = React.createClass({
       info: this.props.info
     }
   },
-
   render: function() {
     return(
       <div>

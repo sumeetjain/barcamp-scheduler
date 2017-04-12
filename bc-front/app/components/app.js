@@ -16,7 +16,7 @@ var App = React.createClass({
     xhr.onload = function() {
       response = JSON.parse(xhr.responseText);
       _this.setState({time: Object.keys(response)});
-      _this.setState({info: response})
+      _this.setState({info: response});
     }
     xhr.send();
   },

@@ -1,4 +1,5 @@
 var React = require('react');
+var SignUpModal = require('./signup.js')
 
 const box = {
   width: "300px",
@@ -91,23 +92,51 @@ var Description = React.createClass({
 var Card = React.createClass({
   getInitialState: function () {
     return {
+      id: this.props.value["id"],
+      state: this.props.value["state"],
       name: this.props.value["name"],
       title: this.props.value["title"],
       description: this.props.value["description"]
     }
   },
-
+  // handleSignUp: function () {
+  //   this.setState({signUpControl: true});
+  // },
   render: function() {
-
+    if (this.state.state == "SIGNUP") {
+      var currentState = (
+        <div onClick={this.handleSignUp}>
+          <CategoryImage />
+          <ClearFloats />
+          <Title title="Sign up for this slot!" />
+          <Description description="Click on this box to sign up!" />
+        </div>
+      );
+    } else if (this.state.state == "PENDING") {
+      var currentState = (
+        <div>
+          <CategoryImage />
+          <ClearFloats />
+          <Title title="Get outta here!" />
+          <Description description="Someone is currently attempting to sign up for this time slot. Bug them if you think they left it open in error :D" />
+        </div>
+      );
+    } else if (this.state.state == "SET") {
+      var currentState = (
+        <div>
+          <Name name={this.state.name} />
+          <CategoryImage />
+          <ClearFloats />
+          <Title title={this.state.title} />
+          <Description description={this.state.description} />
+        </div>
+      );
+    }
     return (
       <div style={box}>
-        <Name name={this.state.name}/>
-        <CategoryImage />
-        <ClearFloats />
-        <Title title={this.state.title}/>
-        <Description description={this.state.description}/>
+        {currentState}
       </div>
-    );
+    )
   }
 });
 
