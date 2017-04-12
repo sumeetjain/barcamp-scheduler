@@ -1,14 +1,48 @@
 var React = require('react');
 var SignUpModal = require('./signup.js');
 
-const box = {
+const boxC = {
   width: "300px",
   height: "300px",
-  backgroundColor: "#eee",
+  backgroundColor: "red",
   fontFamily: "Helvetica",
   marginRight: "10px",
   paddingLeft: "5px",
-  paddingRight: "5px"
+  paddingRight: "5px",
+  position: "relative"
+};
+
+const boxE = {
+  width: "300px",
+  height: "300px",
+  backgroundColor: "blue",
+  fontFamily: "Helvetica",
+  marginRight: "10px",
+  paddingLeft: "5px",
+  paddingRight: "5px",
+  position: "relative"
+};
+
+const boxT = {
+  width: "300px",
+  height: "300px",
+  backgroundColor: "green",
+  fontFamily: "Helvetica",
+  marginRight: "10px",
+  paddingLeft: "5px",
+  paddingRight: "5px",
+  position: "relative"
+};
+
+const boxK = {
+  width: "300px",
+  height: "300px",
+  backgroundColor: "yellow",
+  fontFamily: "Helvetica",
+  marginRight: "10px",
+  paddingLeft: "5px",
+  paddingRight: "5px",
+  position: "relative"
 };
 
 const title = {
@@ -28,6 +62,15 @@ const name = {
 const clear = {
   clear: "both"
 };
+
+const letters = {
+  color: "pink",
+  position: "absolute",
+  bottom: "5px",
+  right: "15px",
+  fontSize: "1.75em",
+  fontFamily: "cursive"
+}
 
 var Name = React.createClass({
   getDefaultProps: function () {
@@ -58,7 +101,7 @@ var Title = React.createClass({
 var CategoryImage = React.createClass({
   getDefaultProps: function () {
     return {
-      image: './app/images/track_creative_2016.png'
+      image: './app/images/track_technology_2016.png'
     }
   },
   render: function() {
@@ -89,9 +132,41 @@ var Description = React.createClass({
   }
 });
 
+var CategoryLetter = React.createClass({
+  getDefaultProps: function () {
+    return {
+      letter: 'N'
+    }
+  },
+  render: function() {
+    return(
+      <div style={letters}>{this.props.letter}</div>
+    );
+  }
+});
+
 var Card = React.createClass({
   getInitialState: function () {
+    if (this.props.category == "Creative") {
+      var url = "./app/images/track_creative_2016.png"
+      var letter = "C"
+    }
+    else if (this.props.category == "Entrepreneur")  {
+      var url = "./app/images/track_entrepreneurship_2016.png"
+      var letter = "E"
+    }
+    else if (this.props.category == "Technology")  {
+      var url = "./app/images/track_technology_2016.png"
+      var letter = "T"
+    }
+    else if (this.props.category == "Kitchen Sink")  {
+      var url = "./app/images/track_kitchen-sink_2016.png"
+      var letter = "K"
+    }
     return {
+      catImageURL: url,
+      catLetter: letter,
+      category: this.props.category,
       id: this.props.value["id"],
       state: this.props.value["state"],
       name: this.props.value["name"],
@@ -105,36 +180,53 @@ var Card = React.createClass({
       isOpen: !this.state.isOpen
     })
   },
+
   render: function() {
+    if (this.state.category == "Creative") {
+      box = boxC
+    }
+    else if (this.state.category == "Entrepreneur")  {
+      box = boxE
+    }
+    else if (this.state.category == "Technology")  {
+      box = boxT
+    }
+    else if (this.state.category == "Kitchen Sink")  {
+      box = boxK
+    }
     if (this.state.state == "SIGNUP") {
       var currentState = (
         <div onClick={this.toggleModal}>
-          <CategoryImage />
+          <CategoryImage image={this.state.catImageURL} />
           <ClearFloats />
           <Title title="Sign up for this slot!" />
           <Description description="Click on this box to sign up!" />
+          <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
     } else if (this.state.state == "PENDING") {
       var currentState = (
         <div>
-          <CategoryImage />
+          <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
           <Title title="Get outta here!" />
           <Description description="Someone is currently attempting to sign up for this time slot. Bug them if you think they left it open in error :D" />
+          <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
     } else if (this.state.state == "SET") {
       var currentState = (
         <div>
           <Name name={this.state.name} />
-          <CategoryImage />
+          <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
           <Title title={this.state.title} />
           <Description description={this.state.description} />
+          <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
     }
+
     return (
       <div>
         <div style={box}>

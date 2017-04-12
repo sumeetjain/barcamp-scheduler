@@ -29,10 +29,10 @@ var RowByTime = React.createClass({
         <div style={center}>{this.props.time}</div>
         <br />
         <div style={row}>
-          <Card value={this.props.info["Entrepreneur"]} />
-          <Card value={this.props.info["Technology"]} />
-          <Card value={this.props.info["Creative"]} />
-          <Card value={this.props.info["Kitchen Sink"]} />
+          <Card value={this.props.info["Creative"]} category="Creative" />
+          <Card value={this.props.info["Entrepreneur"]} category="Entrepreneur" />
+          <Card value={this.props.info["Technology"]} category="Technology" />
+          <Card value={this.props.info["Kitchen Sink"]} category="Kitchen Sink" />
         </div>
       </div>
     )
