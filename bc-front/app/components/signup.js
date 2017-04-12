@@ -15,6 +15,16 @@ const adminModal = {
   borderRadius: "10px"
 }
 
+const modalBackground = {
+  background: "rgba(0,0,0,0.5)",
+  position: "fixed",
+  zIndex: "9998",
+  width: "100vw",
+  height: "100vh",
+  top: "0",
+  left: "0"
+  }
+
 var SignUpModal = React.createClass({
   getInitialState: function () {
     return {
@@ -23,21 +33,24 @@ var SignUpModal = React.createClass({
   },
   componentDidMount : function () {
     xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/something?id=' + this.state.id + '&status=pending');
+    xhr.open('POST', 'http://localhost:3000/pending?id=' + this.state.id + '&status=pending');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
   },
   render: function () {
     return(
-      <div style={adminModal}>
-        <form action="http://localhost:3000/something" method="post">
-          <p>Full Name: <input type="text" name="name" /></p>
-          <p>Title: <input type="text" name="title" /></p>
-          <p>Description: <textarea name="description" /></p>
-          <input type="text" name="id" value={this.state.id} hidden />
-          <input type="text" name="status" value="closed" hidden />
-          <input type="submit" />
-        </form>
+      <div>
+        <div style={adminModal}>
+          <form action="http://localhost:3000/updatedata" method="post">
+            <p>Full Name: <input type="text" name="name" /></p>
+            <p>Title: <input type="text" name="title" /></p>
+            <p>Description: <textarea name="description" /></p>
+            <input type="text" name="id" value={this.state.id} hidden />
+            <input type="text" name="status" value="closed" hidden />
+            <input type="submit" />
+          </form>
+        </div>
+        <div style={modalBackground}></div>
       </div>
     )
   }
