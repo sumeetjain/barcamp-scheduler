@@ -6,7 +6,7 @@ class Card < ApplicationRecord
   enum state: ["SIGNUP", "PENDING", "SET"]
 
   def self.json
-    cards = Card.all.as_json
+    cards = Card.all.order(:timeslot).as_json
     result = {}
     cards.each do |card|
       card_hash = {
@@ -24,7 +24,7 @@ class Card < ApplicationRecord
       end
 
     end
-    return result.to_json
+    return result
   end   
   
 

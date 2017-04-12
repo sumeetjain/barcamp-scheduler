@@ -89,14 +89,23 @@ var Description = React.createClass({
 });
 
 var Card = React.createClass({
+  getInitialState: function () {
+    return {
+      name: this.props.value["name"],
+      title: this.props.value["title"],
+      description: this.props.value["description"]
+    }
+  },
+
   render: function() {
+
     return (
       <div style={box}>
-        <Name />
+        <Name name={this.state.name}/>
         <CategoryImage />
         <ClearFloats />
-        <Title />
-        <Description />
+        <Title title={this.state.title}/>
+        <Description description={this.state.description}/>
       </div>
     );
   }
