@@ -10,6 +10,7 @@ class Card < ApplicationRecord
     result = {}
     cards.each do |card|
       card_hash = {
+        "id" => card["id"],
         "name" => card["name"],
         "title" => card["title"],
         "description" => card["description"],
