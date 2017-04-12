@@ -88,10 +88,22 @@ var Title = React.createClass({
 var CategoryImage = React.createClass({
   getDefaultProps: function () {
     return {
-      image: './app/images/track_creative_2016.png'
+      image: './app/images/track_technology_2016.png'
     }
   },
   render: function() {
+    // if (this.state.category == "Creative") {
+    //   this.props.image = './app/images/track_creative_2016.png'
+    // }
+    // else if (this.state.category == "Entrepreneur")  {
+    //   this.props.image = './app/images/track_entrepreneurship_2016.png'
+    // }
+    // else if (this.state.category == "Technology")  {
+    //   this.props.image = './app/images/track_technology_2016.png'
+    // }
+    // else if (this.state.category == "Kitchen Sink")  {
+    //   this.props.image = './app/images/track_kitchen-sink_2016.png'
+    // }
     return(
       <div style={categoryImage}><img src={this.props.image} width="40" /></div>
     );
@@ -121,7 +133,26 @@ var Description = React.createClass({
 
 var Card = React.createClass({
   getInitialState: function () {
+    if (this.props.category == "Creative") {
+      var url = "./app/images/track_creative_2016.png"
+      var letter = "C"
+    }
+    else if (this.props.category == "Entrepreneur")  {
+      var url = "./app/images/track_entrepreneurship_2016.png"
+      var letter = "C"
+    }
+    else if (this.props.category == "Technology")  {
+      var url = "./app/images/track_technology_2016.png"
+      var letter = "C"
+    }
+    else if (this.props.category == "Kitchen Sink")  {
+      var url = "./app/images/track_kitchen-sink_2016.png"
+      var letter = "C"
+    }
     return {
+      catImageURL: url,
+      catLetter: letter,
+      category: this.props.category,
       id: this.props.value["id"],
       state: this.props.value["state"],
       name: this.props.value["name"],
@@ -133,10 +164,22 @@ var Card = React.createClass({
   //   this.setState({signUpControl: true});
   // },
   render: function() {
+    if (this.state.category == "Creative") {
+      box = boxC
+    }
+    else if (this.state.category == "Entrepreneur")  {
+      box = boxE
+    }
+    else if (this.state.category == "Technology")  {
+      box = boxT
+    }
+    else if (this.state.category == "Kitchen Sink")  {
+      box = boxK
+    }
     if (this.state.state == "SIGNUP") {
       var currentState = (
         <div onClick={this.handleSignUp}>
-          <CategoryImage />
+          <CategoryImage image={this.state.catImageURL} />
           <ClearFloats />
           <Title title="Sign up for this slot!" />
           <Description description="Click on this box to sign up!" />
@@ -162,20 +205,6 @@ var Card = React.createClass({
         </div>
       );
     }
-    if (this.state.id == 1) {
-      box = boxC
-    }
-    else if (this.state.id == 2)  {
-      box = boxE
-    }
-    else if (this.state.id == 3)  {
-      box = boxT
-    }
-    else if (this.state.id == 4)  {
-      box = boxK
-    }
-
-
 
     return (
       <div style={box}>
