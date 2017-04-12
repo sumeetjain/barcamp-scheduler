@@ -29,6 +29,11 @@ const clear = {
 };
 
 var Name = React.createClass({
+  getDefaultProps: function () {
+    return {
+      name: 'Jamie Locatis'
+    }
+  },
   render: function() {
     return(
       <div style={name}>{this.props.name}</div>
@@ -37,6 +42,11 @@ var Name = React.createClass({
 });
 
 var Title = React.createClass({
+  getDefaultProps: function () {
+    return {
+      title: 'This is a title of something'
+    }
+  },
   render: function() {
     return(
       <div style={title}>{this.props.title}</div>
@@ -45,6 +55,11 @@ var Title = React.createClass({
 });
 
 var CategoryImage = React.createClass({
+  getDefaultProps: function () {
+    return {
+      image: './app/images/track_creative_2016.png'
+    }
+  },
   render: function() {
     return(
       <div style={categoryImage}><img src={this.props.image} width="40" /></div>
@@ -61,6 +76,11 @@ var ClearFloats = React.createClass({
 });
 
 var Description = React.createClass({
+  getDefaultProps: function () {
+    return {
+      description: 'Celiac kitsch poutine, tacos stumptown cardigan jianbing pug pickled kinfolk try-hard put a bird on it air plant activated charcoal. Swag kinfolk marfa cornhole, ennui try-hard narwhal blue bottle forage gastropub schlitz keytar. Bicycle rights schlitz farm-to-table woke biodiesel, shoreditch scenester four dollar toast fashion axe heirloom godard tbh DIY skateboard. Offal cliche hashtag franzen asymmetrical art party.'
+    }
+  },
   render: function() {
     return(
       <div>{this.props.description}</div>
@@ -72,11 +92,11 @@ var Card = React.createClass({
   render: function() {
     return (
       <div style={box}>
-        <Name name="Jamie Locatis" />
-        <CategoryImage image="./app/images/track_creative_2016.png" />
+        <Name />
+        <CategoryImage />
         <ClearFloats />
-        <Title title="This is a title of something" />
-        <Description description="Celiac kitsch poutine, tacos stumptown cardigan jianbing pug pickled kinfolk try-hard put a bird on it air plant activated charcoal. Swag kinfolk marfa cornhole, ennui try-hard narwhal blue bottle forage gastropub schlitz keytar. Bicycle rights schlitz farm-to-table woke biodiesel, shoreditch scenester four dollar toast fashion axe heirloom godard tbh DIY skateboard. Offal cliche hashtag franzen asymmetrical art party." />
+        <Title />
+        <Description />
       </div>
     );
   }
