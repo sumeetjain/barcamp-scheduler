@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  get "ajaxtest" => 'card#jsontest'
+  get "getdata" => 'card#json'
+  post "updatedata" => 'card#update'
 end

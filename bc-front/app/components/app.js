@@ -11,7 +11,7 @@ var App = React.createClass({
   componentDidMount: function() {
     var _this = this;
     xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:3000/ajaxtest');
+    xhr.open('GET', 'http://localhost:3000/getdata');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
       response = JSON.parse(xhr.responseText);
