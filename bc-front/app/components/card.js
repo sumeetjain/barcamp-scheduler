@@ -1,10 +1,40 @@
 var React = require('react');
 var SignUpModal = require('./signup.js')
 
-const box = {
+const boxC = {
   width: "300px",
   height: "300px",
-  backgroundColor: "#eee",
+  backgroundColor: "red",
+  fontFamily: "Helvetica",
+  marginRight: "10px",
+  paddingLeft: "5px",
+  paddingRight: "5px"
+};
+
+const boxE = {
+  width: "300px",
+  height: "300px",
+  backgroundColor: "blue",
+  fontFamily: "Helvetica",
+  marginRight: "10px",
+  paddingLeft: "5px",
+  paddingRight: "5px"
+};
+
+const boxT = {
+  width: "300px",
+  height: "300px",
+  backgroundColor: "green",
+  fontFamily: "Helvetica",
+  marginRight: "10px",
+  paddingLeft: "5px",
+  paddingRight: "5px"
+};
+
+const boxK = {
+  width: "300px",
+  height: "300px",
+  backgroundColor: "yellow",
   fontFamily: "Helvetica",
   marginRight: "10px",
   paddingLeft: "5px",
@@ -132,6 +162,21 @@ var Card = React.createClass({
         </div>
       );
     }
+    if (this.state.id == 1) {
+      box = boxC
+    }
+    else if (this.state.id == 2)  {
+      box = boxE
+    }
+    else if (this.state.id == 3)  {
+      box = boxT
+    }
+    else if (this.state.id == 4)  {
+      box = boxK
+    }
+
+
+
     return (
       <div style={box}>
         {currentState}
