@@ -18,18 +18,24 @@ var RowByTime = React.createClass({
       time: 'A Time to be Defined :D'
     }
   },
+  getInitialState: function () {
+    return {
+      info: this.props.info
+    }
+  },
+
   render: function() {
     return(
-    <div>
-      <div style={center}>{this.props.time}</div>
-      <br />
-      <div style={row}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      <div>
+        <div style={center}>{this.props.time}</div>
+        <br />
+        <div style={row}>
+          <Card value={this.props.info["Entrepreneur"]} />
+          <Card value={this.props.info["Technology"]} />
+          <Card value={this.props.info["Creative"]} />
+          <Card value={this.props.info["Kitchen Sink"]} />
+        </div>
       </div>
-    </div>
     )
   }
 });

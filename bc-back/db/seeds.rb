@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Card.timeslots.keys.each do |slot|
+  Card.categories.keys.each do |cat|
+    Card.create(timeslot: slot, category: cat, state: "SIGNUP")
+  end
+end
