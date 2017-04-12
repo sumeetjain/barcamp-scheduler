@@ -1,5 +1,5 @@
 var React = require('react');
-var SignUpModal = require('./signup.js')
+var SignUpModal = require('./signup.js');
 
 const box = {
   width: "300px",
@@ -96,16 +96,19 @@ var Card = React.createClass({
       state: this.props.value["state"],
       name: this.props.value["name"],
       title: this.props.value["title"],
-      description: this.props.value["description"]
+      description: this.props.value["description"],
+      isOpen: false
     }
   },
-  // handleSignUp: function () {
-  //   this.setState({signUpControl: true});
-  // },
+  toggleModal: function () {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  },
   render: function() {
     if (this.state.state == "SIGNUP") {
       var currentState = (
-        <div onClick={this.handleSignUp}>
+        <div onClick={this.toggleModal}>
           <CategoryImage />
           <ClearFloats />
           <Title title="Sign up for this slot!" />
@@ -133,8 +136,11 @@ var Card = React.createClass({
       );
     }
     return (
-      <div style={box}>
-        {currentState}
+      <div>
+        <div style={box}>
+          {currentState}
+        </div>
+        {this.state.isOpen ? <SignUpModal id={this.props.id} /> : null}
       </div>
     )
   }

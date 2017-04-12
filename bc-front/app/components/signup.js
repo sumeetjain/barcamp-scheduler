@@ -2,7 +2,6 @@ var React = require('react');
 
 const adminModal = {
   color: "black",
-  display: "none",
   width: "400px",
   height: "140px",
   position: "fixed",
@@ -17,9 +16,16 @@ const adminModal = {
 }
 
 var SignUpModal = React.createClass({
+  getInitialState: function () {
+    return {
+      id: this.props.id
+    }
+  }
   render: function () {
     return(
-      <div style={adminModal}></div>
+      <div>
+        <div style={adminModal}>{this.state.id}</div>
+      </div>
     )
   }
 });
