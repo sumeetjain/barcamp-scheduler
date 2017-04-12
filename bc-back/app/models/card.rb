@@ -4,4 +4,15 @@ class Card < ApplicationRecord
     "3:00 PM", "3:30 PM", "4:00 PM"]
   enum category: ["Entrepreneur", "Technology", "Creative", "Kitchen Sink"]
   enum state: ["SIGNUP", "PENDING", "SET"]
+
+  def self.json
+    result = {}
+    self.timeslots.keys.each do |slot|
+      slot_cards = Card.where(timeslot: slot)
+      slot_cards.each do 
+      result[slot] = .as_json
+    end
+    return result
+  end
+
 end
