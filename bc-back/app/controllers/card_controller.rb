@@ -7,18 +7,12 @@ class CardController < ApplicationController
 
   def pending
   	card = Card.find_by(id: params['id'])
-  	card.update(status: "pending")
+  	card.update(state: "PENDING")
   end
 
   def update
-  	if params["status"] == "open"
-	  	card = Card.find_by(id: params['id'])
-	  	card.update(status: "open")
-	  	redirect_to action: "json"
-	else
 		card = Card.find_by(id: params['id'])
-	  	card.update(name: params['name'], title: params['title'], description: params['description'], status: "closed")
-	  	redirect_to action: "json"
-	end
+	  	card.update(name: params['name'], title: params['title'], description: params['description'], state: "SET")
+	  	redirect_to 'http://localhost:8080'
   end
 end
