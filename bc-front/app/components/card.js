@@ -232,7 +232,7 @@ var Card = React.createClass({
         <div style={box}>
           {currentState}
         </div>
-        {this.state.isOpen ? <SignUpModal id={this.props.id} /> : null}
+        {this.state.isOpen ? <SignUpModal id={this.state.id} /> : null}
       </div>
     )
   }

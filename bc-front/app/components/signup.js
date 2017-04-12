@@ -3,7 +3,7 @@ var React = require('react');
 const adminModal = {
   color: "black",
   width: "400px",
-  height: "140px",
+  height: "300px",
   position: "fixed",
   zIndex: "9999",
   left: "50%",
@@ -20,11 +20,24 @@ var SignUpModal = React.createClass({
     return {
       id: this.props.id
     }
-  }
+  },
+  componentDidMount : function () {
+    xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/something?id=' + this.state.id + '&status=pending');
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+  },
   render: function () {
     return(
-      <div>
-        <div style={adminModal}>{this.state.id}</div>
+      <div style={adminModal}>
+        <form action="http://localhost:3000/something" method="post">
+          <p>Full Name: <input type="text" name="name" /></p>
+          <p>Title: <input type="text" name="title" /></p>
+          <p>Description: <textarea name="description" /></p>
+          <input type="text" name="id" value={this.state.id} hidden />
+          <input type="text" name="status" value="closed" hidden />
+          <input type="submit" />
+        </form>
       </div>
     )
   }
