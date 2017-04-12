@@ -6,13 +6,26 @@ class Card < ApplicationRecord
   enum state: ["SIGNUP", "PENDING", "SET"]
 
   def self.json
+    cards = Card.all.as_json
     result = {}
-    self.timeslots.keys.each do |slot|
-      slot_cards = Card.where(timeslot: slot)
-      slot_cards.each do 
-      result[slot] = .as_json
+    cards.each do |card|
+      card_hash = {
+        "name" => card["name"],
+        "title" => card["title"],
+        "description" => card["description"],
+        "state" => card["state"]
+      }
+    
+
+      if result[card["timeslot"]]
+        result[card["timeslot"]][card["category"]] = card_hash
+      else
+        result[card["timeslot"]] = {card["category"] => card_hash}
+      end
+
     end
-    return result
-  end
+    return result.to_json
+  end   
+  
 
 end
