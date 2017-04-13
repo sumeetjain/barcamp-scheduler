@@ -109,7 +109,7 @@ var Card = React.createClass({
     });
   },
   toggleModal: function () {
-    this.setState({isOpen: true});
+    this.setState({isOpen: true, state: "PENDING"});
   },
   closeModal: function () {
     this.setState({isOpen: false});
@@ -120,6 +120,7 @@ var Card = React.createClass({
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
     this.closeModal();
+    this.setState({state: "SIGNUP"});
   },
   render: function() {
     if (this.state.category == "Creative") {
