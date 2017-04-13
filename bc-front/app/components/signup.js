@@ -1,6 +1,4 @@
 var React = require('react');
-var Row = require('react-materialize/lib/Row.js');
-var Input = require('react-materialize/lib/Input.js')
 
 const adminModal = {
   color: "black",
@@ -40,13 +38,6 @@ var SignUpModal = React.createClass({
       <div>
         <div style={adminModal}>
           <form action="http://localhost:3000/updatedata" method="post">
-            <Row>
-              <Input placeholder="Placeholder" s={6} label="First Name" />
-              <Input s={6} label="Last Name" />
-              <Input s={12} label="disabled" defaultValue="I am not editable" disabled />
-              <Input type="password" label="password" s={12} />
-              <Input type="email" label="Email" s={12} />
-            </Row>
             <p>Full Name: <input type="text" name="name" /></p>
             <p>Title: <input type="text" name="title" /></p>
             <p>Description: <textarea name="description" /></p>
