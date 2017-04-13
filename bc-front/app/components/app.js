@@ -1,5 +1,7 @@
 var React = require('react');
 var RowByTime = require('./row.js');
+var Radium = require('radium');
+var StyleRoot = Radium.StyleRoot;
 
 var App = React.createClass({
   getInitialState: function() {
@@ -28,9 +30,10 @@ var App = React.createClass({
       <RowByTime time={time} info={response[time]} />
     );
     return(
-      <div>
+      <StyleRoot>
         {allRows}
-      </div>
+      </StyleRoot>
+
       )
     }
   });
