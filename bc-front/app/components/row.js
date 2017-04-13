@@ -18,10 +18,8 @@ var RowByTime = React.createClass({
       time: 'A Time to be Defined :D'
     }
   },
-  getInitialState: function () {
-    return {
-      info: this.props.info
-    }
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({info: nextProps.info});
   },
   render: function() {
     return(
@@ -29,10 +27,10 @@ var RowByTime = React.createClass({
         <div style={center}>{this.props.time}</div>
         <br />
         <div style={row}>
-          <Card value={this.props.info["Creative"]} category="Creative" />
-          <Card value={this.props.info["Entrepreneur"]} category="Entrepreneur" />
-          <Card value={this.props.info["Technology"]} category="Technology" />
-          <Card value={this.props.info["Kitchen Sink"]} category="Kitchen Sink" />
+          <Card info={this.props.info["Creative"]} category="Creative" />
+          <Card info={this.props.info["Entrepreneur"]} category="Entrepreneur" />
+          <Card info={this.props.info["Technology"]} category="Technology" />
+          <Card info={this.props.info["Kitchen Sink"]} category="Kitchen Sink" />
         </div>
       </div>
     )
