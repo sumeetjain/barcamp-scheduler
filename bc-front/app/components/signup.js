@@ -42,7 +42,7 @@ var SignUpModal = React.createClass({
             <p>Title: <input type="text" name="title" /></p>
             <p>Description: <textarea name="description" /></p>
             <input type="text" name="id" value={this.state.id} hidden />
-            <input type="text" name="status" value="closed" hidden />
+            <input type="text" name="state" value="SET" hidden />
             <input type="submit" />
           </form>
         </div>

@@ -27,7 +27,16 @@ class Card < ApplicationRecord
     end
     puts result["9:30 AM"]["Entrepreneur"]
     return result
-  end   
+  end
+
+  def statePending
+      self.update(state: "PENDING")
+  end
+
+  def stateSignUp
+      self.update(state: "SIGNUP")
+  end
+
   
 
 end
