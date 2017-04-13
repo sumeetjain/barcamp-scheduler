@@ -6,6 +6,7 @@ var CategoryLetter = require('./card/category_letter.js');
 var Description = require('./card/description.js');
 var CategoryImage = require('./card/category_image.js');
 var SignUpModal = require('./signup.js');
+var MobileModal = require('./mobile.js');
 
 var boxStyle = {
   base: {
@@ -17,21 +18,33 @@ var boxStyle = {
     paddingRight: "5px",
     position: "relative",
     margin: "0 auto 10px auto",
-    '@media (min-width: 500px)': {
+    '@media (min-width: 576px)': {
       marginRight: "10px"
-    }
+    },
   },
   creative: {
-    backgroundColor: "pink"
+    backgroundColor: "pink",
+    ':hover': {
+      backgroundColor: "red"
+    }
   },
   entrepreneur: {
-    backgroundColor: "lightblue"
+    backgroundColor: "lightblue",
+    ':hover': {
+      backgroundColor: "blue"
+    }
   },
   technology: {
-    backgroundColor: "lightgreen"
+    backgroundColor: "lightgreen",
+    ':hover': {
+      backgroundColor: "green"
+    }
   },
   kitchenSink: {
-    backgroundColor: "lightyellow"
+    backgroundColor: "lightyellow",
+    ':hover': {
+      backgroundColor: "yellow"
+    }
   }
 }
 
@@ -116,7 +129,7 @@ var Card = React.createClass({
     }
     if (this.state.state == "SIGNUP") {
       var currentState = (
-        <div onClick={this.toggleModal}>
+        <div onClick={this.toggleModal} style={box}>
           <CategoryImage image={this.state.catImageURL} />
           <ClearFloats />
           <Title title="Sign up for this slot!" />
@@ -126,7 +139,7 @@ var Card = React.createClass({
       );
     } else if (this.state.state == "PENDING") {
       var currentState = (
-        <div>
+        <div style={box}>
           <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
           <Title title="Get outta here!" />
@@ -136,7 +149,7 @@ var Card = React.createClass({
       );
     } else if (this.state.state == "SET") {
       var currentState = (
-        <div>
+        <div style={box}>
           <Name name={this.state.name} />
           <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
@@ -149,11 +162,10 @@ var Card = React.createClass({
     var modalBack = (
       <div style={modalBackground} onClick={this.closeModal} />
     );
-    debugger
 
-    if (window.innerWidth > 500) {
+    if (window.innerWidth < 576) {
       var modal = (
-        <MobileModal />
+        <MobileModal id={this.state.id} />
       )
     } else {
       var modal = (
@@ -163,9 +175,7 @@ var Card = React.createClass({
 
     return (
       <div>
-        <div style={box}>
-          {currentState}
-        </div>
+        {currentState}
         {this.state.isOpen ? modal : null}
         {this.state.isOpen ? modalBack : null}
       </div>
