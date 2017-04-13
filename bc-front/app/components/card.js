@@ -179,8 +179,7 @@ var Card = React.createClass({
         <SignUpModal id={this.state.id} close={this.closeModal} />
       )
     }
-
-    // To avoid two way data-flow we can pass the isOpen function down as part of props
+    
     return (
       <div>
         {currentState}
