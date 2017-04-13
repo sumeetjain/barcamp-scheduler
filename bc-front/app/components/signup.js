@@ -15,25 +15,21 @@ const adminModal = {
   borderRadius: "10px"
 }
 
-const modalBackground = {
-  background: "rgba(0,0,0,0.5)",
-  position: "fixed",
-  zIndex: "9998",
-  width: "100vw",
-  height: "100vh",
-  top: "0",
-  left: "0"
-  }
-
 var SignUpModal = React.createClass({
   getInitialState: function () {
     return {
       id: this.props.id
     }
   },
-  componentDidMount : function () {
+  componentDidMount: function () {
     xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/pending?id=' + this.state.id + '&status=pending');
+    xhr.open('POST', 'http://localhost:3000/pending?id=' + this.state.id);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+  },
+  componentWillUnmount: function () {
+    xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/cancel?id=' + this.state.id);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
   },
@@ -50,7 +46,6 @@ var SignUpModal = React.createClass({
             <input type="submit" />
           </form>
         </div>
-        <div style={modalBackground}></div>
       </div>
     )
   }

@@ -72,6 +72,16 @@ const letters = {
   fontFamily: "cursive"
 }
 
+const modalBackground = {
+  background: "rgba(0,0,0,0.5)",
+  position: "fixed",
+  zIndex: "9998",
+  width: "100vw",
+  height: "100vh",
+  top: "0",
+  left: "0"
+  }
+
 var Name = React.createClass({
   getDefaultProps: function () {
     return {
@@ -176,11 +186,11 @@ var Card = React.createClass({
     }
   },
   toggleModal: function () {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
+    this.setState({isOpen: true});
   },
-
+  closeModal: function () {
+    this.setState({isOpen: false});
+  },
   render: function() {
     if (this.state.category == "Creative") {
       box = boxC
@@ -200,7 +210,7 @@ var Card = React.createClass({
           <CategoryImage image={this.state.catImageURL} />
           <ClearFloats />
           <Title title="Sign up for this slot!" />
-          <Description description="Click on this box to sign up!" />
+          <Description description="Click here to sign up!" />
           <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
@@ -226,13 +236,16 @@ var Card = React.createClass({
         </div>
       );
     }
-
+    var modalBack = (
+      <div style={modalBackground} onClick={this.closeModal} />
+    );
     return (
       <div>
         <div style={box}>
           {currentState}
         </div>
         {this.state.isOpen ? <SignUpModal id={this.state.id} /> : null}
+        {this.state.isOpen ? modalBack : null}
       </div>
     )
   }
