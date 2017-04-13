@@ -1,5 +1,7 @@
 var React = require('react');
 var RowByTime = require('./row.js');
+var Radium = require('radium');
+var StyleRoot = Radium.StyleRoot;
 
 var App = React.createClass({
   interval: null,
@@ -34,9 +36,10 @@ var App = React.createClass({
       <RowByTime time={time} info={this.state.info[time]} />
     );
     return(
-      <div>
+      <StyleRoot>
         {allRows}
-      </div>
+      </StyleRoot>
+
       )
     }
   });
