@@ -114,6 +114,13 @@ var Card = React.createClass({
   closeModal: function () {
     this.setState({isOpen: false});
   },
+  cancelSubmit: function () {
+    xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/cancel?id=' + this.state.id);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+    this.closeModal();
+  },
   render: function() {
     if (this.state.category == "Creative") {
       box = [boxStyle.base, boxStyle.creative]
@@ -160,19 +167,19 @@ var Card = React.createClass({
       );
     }
     var modalBack = (
-      <div style={modalBackground} onClick={this.closeModal} />
+      <div style={modalBackground} onClick={this.cancelSubmit} />
     );
 
     if (window.innerWidth < 576) {
       var modal = (
-        <MobileModal id={this.state.id} />
+        <MobileModal close={this.closeModal} />
       )
     } else {
       var modal = (
-        <SignUpModal id={this.state.id} />
+        <SignUpModal id={this.state.id} close={this.closeModal} />
       )
     }
-
+    
     return (
       <div>
         {currentState}
