@@ -17,7 +17,7 @@ var boxStyle = {
     }
   },
   creative: {
-    backgroundColor: "red"
+    backgroundColor: "pink"
   },
   entrepreneur: {
     backgroundColor: "lightblue"
@@ -26,7 +26,7 @@ var boxStyle = {
     backgroundColor: "lightgreen"
   },
   kitchenSink: {
-    backgroundColor: "yellow"
+    backgroundColor: "lightyellow"
   }
 }
 
@@ -224,12 +224,24 @@ var Card = React.createClass({
     var modalBack = (
       <div style={modalBackground} onClick={this.closeModal} />
     );
+    debugger
+
+    if (window.innerWidth > 500) {
+      var modal = (
+        <MobileModal />
+      )
+    } else {
+      var modal = (
+        <SignUpModal id={this.state.id} />
+      )
+    }
+
     return (
       <div>
         <div style={box}>
           {currentState}
         </div>
-        {this.state.isOpen ? <SignUpModal id={this.state.id} /> : null}
+        {this.state.isOpen ? modal : null}
         {this.state.isOpen ? modalBack : null}
       </div>
     )
