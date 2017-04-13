@@ -177,13 +177,21 @@ var Card = React.createClass({
       catImageURL: url,
       catLetter: letter,
       category: this.props.category,
-      id: this.props.value["id"],
-      state: this.props.value["state"],
-      name: this.props.value["name"],
-      title: this.props.value["title"],
-      description: this.props.value["description"],
+      id: this.props.info["id"],
+      state: this.props.info["state"],
+      name: this.props.info["name"],
+      title: this.props.info["title"],
+      description: this.props.info["description"],
       isOpen: false
     }
+  },
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({
+      state: this.props.info["state"],
+      name: this.props.info["name"],
+      title: this.props.info["title"],
+      description: this.props.info["description"]
+    });
   },
   toggleModal: function () {
     this.setState({isOpen: true});
