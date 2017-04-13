@@ -2,61 +2,33 @@ var React = require('react');
 var Radium = require('radium');
 var SignUpModal = require('./signup.js');
 
-const boxC = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "red",
-  fontFamily: "Helvetica",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative",
-  margin: "0 auto 10px auto",
-  '@media (min-width: 500px)': {
+var boxStyle = {
+  base: {
+    width: "300px",
+    height: "300px",
+    backgroundColor: "grey",
+    fontFamily: "Helvetica",
+    paddingLeft: "5px",
+    paddingRight: "5px",
+    position: "relative",
+    margin: "0 auto 10px auto",
+    '@media (min-width: 500px)': {
       marginRight: "10px"
+    }
+  },
+  creative: {
+    backgroundColor: "red"
+  },
+  entrepreneur: {
+    backgroundColor: "lightblue"
+  },
+  technology: {
+    backgroundColor: "lightgreen"
+  },
+  kitchenSink: {
+    backgroundColor: "yellow"
   }
-};
-
-const boxE = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "blue",
-  fontFamily: "Helvetica",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative",
-  margin: "0 auto 10px auto",
-  '@media (min-width: 500px)': {
-      marginRight: "10px"
-  }
-};
-
-const boxT = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "green",
-  fontFamily: "Helvetica",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative",
-  margin: "0 auto 10px auto",
-  '@media (min-width: 500px)': {
-      marginRight: "10px"
-  }
-};
-
-const boxK = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "yellow",
-  fontFamily: "Helvetica",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative",
-  margin: "0 auto 10px auto",
-  '@media (min-width: 500px)': {
-      marginRight: "10px"
-  }
-};
+}
 
 const title = {
   fontSize: "1.5em"
@@ -77,7 +49,7 @@ const clear = {
 };
 
 const letters = {
-  color: "pink",
+  color: "navy",
   position: "absolute",
   bottom: "5px",
   right: "15px",
@@ -206,16 +178,16 @@ var Card = React.createClass({
   },
   render: function() {
     if (this.state.category == "Creative") {
-      box = boxC
+      box = [boxStyle.base, boxStyle.creative]
     }
     else if (this.state.category == "Entrepreneur")  {
-      box = boxE
+      box = [boxStyle.base, boxStyle.entrepreneur]
     }
     else if (this.state.category == "Technology")  {
-      box = boxT
+      box = [boxStyle.base, boxStyle.technology]
     }
     else if (this.state.category == "Kitchen Sink")  {
-      box = boxK
+      box = [boxStyle.base, boxStyle.kitchenSink]
     }
     if (this.state.state == "SIGNUP") {
       var currentState = (
