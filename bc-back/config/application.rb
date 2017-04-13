@@ -29,7 +29,7 @@ module BcBack
 
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
-        origins '*'
+        origins ENV['REACT_URL']
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
