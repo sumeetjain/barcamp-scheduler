@@ -1,15 +1,22 @@
 var React = require('react');
+var Radium = require('radium');
 var Card = require('./card.js')
+
+
 
 const center = {
   textAlign: "center",
   fontSize: "2.5em",
   color: "red",
-  fontFamily: "Helvetica"
+  fontFamily: "Helvetica",
 }
 
 const row = {
-  display: "flex"
+  display: "flex",
+  flexDirection: "column",
+  '@media (min-width: 500px)': {
+      flexDirection: "row"
+  },
 }
 
 var RowByTime = React.createClass({
@@ -37,4 +44,4 @@ var RowByTime = React.createClass({
   }
 });
 
-module.exports = RowByTime;
+module.exports = Radium(RowByTime);

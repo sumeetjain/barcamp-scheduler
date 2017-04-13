@@ -1,7 +1,7 @@
 var React = require('react');
 
 const letters = {
-  color: "pink",
+  color: "navy",
   position: "absolute",
   bottom: "5px",
   right: "15px",

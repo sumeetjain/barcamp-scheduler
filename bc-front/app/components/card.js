@@ -1,54 +1,52 @@
 var React = require('react');
+var Radium = require('radium');
 var Name = require('./card/name.js');
 var Title = require('./card/title.js');
 var CategoryLetter = require('./card/category_letter.js');
 var Description = require('./card/description.js');
 var CategoryImage = require('./card/category_image.js');
 var SignUpModal = require('./signup.js');
+var MobileModal = require('./mobile.js');
 
-const boxC = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "red",
-  fontFamily: "Helvetica",
-  marginRight: "10px",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative"
-};
-
-const boxE = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "blue",
-  fontFamily: "Helvetica",
-  marginRight: "10px",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative"
-};
-
-const boxT = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "green",
-  fontFamily: "Helvetica",
-  marginRight: "10px",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative"
-};
-
-const boxK = {
-  width: "300px",
-  height: "300px",
-  backgroundColor: "yellow",
-  fontFamily: "Helvetica",
-  marginRight: "10px",
-  paddingLeft: "5px",
-  paddingRight: "5px",
-  position: "relative"
-};
+var boxStyle = {
+  base: {
+    width: "300px",
+    height: "300px",
+    backgroundColor: "grey",
+    fontFamily: "Helvetica",
+    paddingLeft: "5px",
+    paddingRight: "5px",
+    position: "relative",
+    margin: "0 auto 10px auto",
+    '@media (min-width: 576px)': {
+      marginRight: "10px"
+    },
+  },
+  creative: {
+    backgroundColor: "pink",
+    ':hover': {
+      backgroundColor: "red"
+    }
+  },
+  entrepreneur: {
+    backgroundColor: "lightblue",
+    ':hover': {
+      backgroundColor: "blue"
+    }
+  },
+  technology: {
+    backgroundColor: "lightgreen",
+    ':hover': {
+      backgroundColor: "green"
+    }
+  },
+  kitchenSink: {
+    backgroundColor: "lightyellow",
+    ':hover': {
+      backgroundColor: "yellow"
+    }
+  }
+}
 
 const clear = {
   clear: "both"
@@ -118,20 +116,20 @@ var Card = React.createClass({
   },
   render: function() {
     if (this.state.category == "Creative") {
-      box = boxC
+      box = [boxStyle.base, boxStyle.creative]
     }
     else if (this.state.category == "Entrepreneur")  {
-      box = boxE
+      box = [boxStyle.base, boxStyle.entrepreneur]
     }
     else if (this.state.category == "Technology")  {
-      box = boxT
+      box = [boxStyle.base, boxStyle.technology]
     }
     else if (this.state.category == "Kitchen Sink")  {
-      box = boxK
+      box = [boxStyle.base, boxStyle.kitchenSink]
     }
     if (this.state.state == "SIGNUP") {
       var currentState = (
-        <div onClick={this.toggleModal}>
+        <div onClick={this.toggleModal} style={box}>
           <CategoryImage image={this.state.catImageURL} />
           <ClearFloats />
           <Title title="Sign up for this slot!" />
@@ -141,7 +139,7 @@ var Card = React.createClass({
       );
     } else if (this.state.state == "PENDING") {
       var currentState = (
-        <div>
+        <div style={box}>
           <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
           <Title title="Get outta here!" />
@@ -151,7 +149,7 @@ var Card = React.createClass({
       );
     } else if (this.state.state == "SET") {
       var currentState = (
-        <div>
+        <div style={box}>
           <Name name={this.state.name} />
           <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
@@ -164,16 +162,25 @@ var Card = React.createClass({
     var modalBack = (
       <div style={modalBackground} onClick={this.closeModal} />
     );
+
+    if (window.innerWidth < 576) {
+      var modal = (
+        <MobileModal id={this.state.id} />
+      )
+    } else {
+      var modal = (
+        <SignUpModal id={this.state.id} />
+      )
+    }
+
     return (
       <div>
-        <div style={box}>
-          {currentState}
-        </div>
-        {this.state.isOpen ? <SignUpModal id={this.state.id} /> : null}
+        {currentState}
+        {this.state.isOpen ? modal : null}
         {this.state.isOpen ? modalBack : null}
       </div>
     )
   }
 });
 
-module.exports = Card;
+module.exports = Radium(Card);
