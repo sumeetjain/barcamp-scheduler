@@ -13,9 +13,14 @@ var App = React.createClass({
     }
   },
   componentDidMount: function () {
-    this.interval = setInterval(function(){
-      this.getUpdate();
-    }.bind(this), 1000);
+    this.getUpdate();
+    if (window.innerWidth < 576) {
+      this.interval = null;
+    } else {
+      this.interval = setInterval(function(){
+        this.getUpdate();
+        }.bind(this), 1000);
+    }
   },
   getUpdate: function() {
     var _this = this;
