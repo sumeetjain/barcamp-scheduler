@@ -33,11 +33,17 @@ var SignUpModal = React.createClass({
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
   },
+  handleSubmit: function (e) {
+    e.preventDefault();
+    xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:3000/updatedata");
+    xhr.send(new FormData(e.target));
+  },  
   render: function () {
     return(
       <div>
         <div style={adminModal}>
-          <form action="http://localhost:3000/updatedata" method="post">
+          <form action="http://localhost:3000/updatedata" method="post" onSumbit={this.handleSubmit} >
             <p>Full Name: <input type="text" name="name" /></p>
             <p>Title: <input type="text" name="title" /></p>
             <p>Description: <textarea name="description" /></p>
