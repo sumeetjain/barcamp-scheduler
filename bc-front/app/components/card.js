@@ -1,5 +1,10 @@
 var React = require('react');
 var Radium = require('radium');
+var Name = require('./card/name.js');
+var Title = require('./card/title.js');
+var CategoryLetter = require('./card/category_letter.js');
+var Description = require('./card/description.js');
+var CategoryImage = require('./card/category_image.js');
 var SignUpModal = require('./signup.js');
 
 var boxStyle = {
@@ -30,32 +35,9 @@ var boxStyle = {
   }
 }
 
-const title = {
-  fontSize: "1.5em"
-};
-
-const categoryImage = {
-  float: "right"
-};
-
-const name = {
-  paddingTop: "25px",
-  float: "left",
-  fontSize: "0.75em"
-};
-
 const clear = {
   clear: "both"
 };
-
-const letters = {
-  color: "navy",
-  position: "absolute",
-  bottom: "5px",
-  right: "15px",
-  fontSize: "1.75em",
-  fontFamily: "cursive"
-}
 
 const modalBackground = {
   background: "rgba(0,0,0,0.5)",
@@ -67,75 +49,10 @@ const modalBackground = {
   left: "0"
   }
 
-var Name = React.createClass({
-  getDefaultProps: function () {
-    return {
-      name: 'Jamie Locatis'
-    }
-  },
-  render: function() {
-    return(
-      <div style={name}>{this.props.name}</div>
-    );
-  }
-});
-
-var Title = React.createClass({
-  getDefaultProps: function () {
-    return {
-      title: 'This is a title of something'
-    }
-  },
-  render: function() {
-    return(
-      <div style={title}>{this.props.title}</div>
-    );
-  }
-});
-
-var CategoryImage = React.createClass({
-  getDefaultProps: function () {
-    return {
-      image: './app/images/track_technology_2016.png'
-    }
-  },
-  render: function() {
-    return(
-      <div style={categoryImage}><img src={this.props.image} width="40" /></div>
-    );
-  }
-});
-
 var ClearFloats = React.createClass({
   render: function() {
     return(
       <div style={clear}></div>
-    );
-  }
-});
-
-var Description = React.createClass({
-  getDefaultProps: function () {
-    return {
-      description: 'Celiac kitsch poutine, tacos stumptown cardigan jianbing pug pickled kinfolk try-hard put a bird on it air plant activated charcoal. Swag kinfolk marfa cornhole, ennui try-hard narwhal blue bottle forage gastropub schlitz keytar. Bicycle rights schlitz farm-to-table woke biodiesel, shoreditch scenester four dollar toast fashion axe heirloom godard tbh DIY skateboard. Offal cliche hashtag franzen asymmetrical art party.'
-    }
-  },
-  render: function() {
-    return(
-      <div>{this.props.description}</div>
-    );
-  }
-});
-
-var CategoryLetter = React.createClass({
-  getDefaultProps: function () {
-    return {
-      letter: 'N'
-    }
-  },
-  render: function() {
-    return(
-      <div style={letters}>{this.props.letter}</div>
     );
   }
 });
@@ -162,13 +79,21 @@ var Card = React.createClass({
       catImageURL: url,
       catLetter: letter,
       category: this.props.category,
-      id: this.props.value["id"],
-      state: this.props.value["state"],
-      name: this.props.value["name"],
-      title: this.props.value["title"],
-      description: this.props.value["description"],
+      id: this.props.info["id"],
+      state: this.props.info["state"],
+      name: this.props.info["name"],
+      title: this.props.info["title"],
+      description: this.props.info["description"],
       isOpen: false
     }
+  },
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({
+      state: this.props.info["state"],
+      name: this.props.info["name"],
+      title: this.props.info["title"],
+      description: this.props.info["description"]
+    });
   },
   toggleModal: function () {
     this.setState({isOpen: true});
