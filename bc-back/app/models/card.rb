@@ -7,25 +7,7 @@ class Card < ApplicationRecord
 
   def self.json
     cards = Card.all.order(:timeslot).as_json
-    result = {}
-    cards.each do |card|
-      card_hash = {
-        "id" => card["id"],
-        "name" => card["name"],
-        "title" => card["title"],
-        "description" => card["description"],
-        "state" => card["state"]
-      }
-    
-
-      if result[card["timeslot"]]
-        result[card["timeslot"]][card["category"]] = card_hash
-      else
-        result[card["timeslot"]] = {card["category"] => card_hash}
-      end
-
-    end
-    puts result["9:30 AM"]["Entrepreneur"]
+    result = self.restructureJson(cards)
     return result
   end
 
@@ -37,6 +19,34 @@ class Card < ApplicationRecord
       self.update(state: "SIGNUP")
   end
 
-  
+
+  private
+
+  def self.restructureJson(cards)
+    newJson = {}
+    cards.each do |card|
+      newJson = self.addcard(newJson, card)
+    end
+    return newJson
+  end
+
+  def self.addcard(newJson, card)
+    if newJson[card["timeslot"]]
+      newJson[card["timeslot"]][card["category"]] = self.makeHash(card)
+    else
+      newJson[card["timeslot"]] = {card["category"] => self.makeHash(card)}
+    end
+    return newJson
+  end
+
+  def self.makeHash(card)
+    return {
+      "id" => card["id"],
+      "name" => card["name"],
+      "title" => card["title"],
+      "description" => card["description"],
+      "state" => card["state"]
+    }
+  end
 
 end
