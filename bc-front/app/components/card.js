@@ -1,4 +1,5 @@
 var React = require('react');
+var Radium = require('radium');
 var SignUpModal = require('./signup.js');
 
 const boxC = {
@@ -6,10 +7,13 @@ const boxC = {
   height: "300px",
   backgroundColor: "red",
   fontFamily: "Helvetica",
-  marginRight: "10px",
   paddingLeft: "5px",
   paddingRight: "5px",
-  position: "relative"
+  position: "relative",
+  margin: "0 auto 10px auto",
+  '@media (min-width: 500px)': {
+      marginRight: "10px"
+  }
 };
 
 const boxE = {
@@ -17,10 +21,13 @@ const boxE = {
   height: "300px",
   backgroundColor: "blue",
   fontFamily: "Helvetica",
-  marginRight: "10px",
   paddingLeft: "5px",
   paddingRight: "5px",
-  position: "relative"
+  position: "relative",
+  margin: "0 auto 10px auto",
+  '@media (min-width: 500px)': {
+      marginRight: "10px"
+  }
 };
 
 const boxT = {
@@ -28,10 +35,13 @@ const boxT = {
   height: "300px",
   backgroundColor: "green",
   fontFamily: "Helvetica",
-  marginRight: "10px",
   paddingLeft: "5px",
   paddingRight: "5px",
-  position: "relative"
+  position: "relative",
+  margin: "0 auto 10px auto",
+  '@media (min-width: 500px)': {
+      marginRight: "10px"
+  }
 };
 
 const boxK = {
@@ -39,10 +49,13 @@ const boxK = {
   height: "300px",
   backgroundColor: "yellow",
   fontFamily: "Helvetica",
-  marginRight: "10px",
   paddingLeft: "5px",
   paddingRight: "5px",
-  position: "relative"
+  position: "relative",
+  margin: "0 auto 10px auto",
+  '@media (min-width: 500px)': {
+      marginRight: "10px"
+  }
 };
 
 const title = {
@@ -251,4 +264,4 @@ var Card = React.createClass({
   }
 });
 
-module.exports = Card;
+module.exports = Radium(Card);
