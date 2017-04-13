@@ -27,23 +27,27 @@ var SignUpModal = React.createClass({
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
   },
-  componentWillUnmount: function () {
-    xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/cancel?id=' + this.state.id);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send();
-  },
+  // componentWillUnmount: function () {
+    
+  // },
+  // cancelSubmit: function () {
+  //   xhr = new XMLHttpRequest();
+  //   xhr.open('POST', 'http://localhost:3000/cancel?id=' + this.state.id);
+  //   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //   xhr.send();
+  // },
   handleSubmit: function (e) {
     e.preventDefault();
     xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:3000/updatedata");
     xhr.send(new FormData(e.target));
+    this.props.close();
   },  
   render: function () {
     return(
       <div>
         <div style={adminModal}>
-          <form action="http://localhost:3000/updatedata" method="post" onSumbit={this.handleSubmit} >
+          <form action="http://localhost:3000/updatedata" method="post" onSubmit={this.handleSubmit} >
             <p>Full Name: <input type="text" name="name" /></p>
             <p>Title: <input type="text" name="title" /></p>
             <p>Description: <textarea name="description" /></p>
