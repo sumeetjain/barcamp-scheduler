@@ -28,6 +28,5 @@ class Card < ApplicationRecord
     puts result["9:30 AM"]["Entrepreneur"]
     return result
   end   
-  
 
 end
