@@ -27,15 +27,6 @@ var SignUpModal = React.createClass({
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
   },
-  // componentWillUnmount: function () {
-    
-  // },
-  // cancelSubmit: function () {
-  //   xhr = new XMLHttpRequest();
-  //   xhr.open('POST', 'http://localhost:3000/cancel?id=' + this.state.id);
-  //   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  //   xhr.send();
-  // },
   handleSubmit: function (e) {
     e.preventDefault();
     xhr = new XMLHttpRequest();

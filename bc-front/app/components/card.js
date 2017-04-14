@@ -102,11 +102,14 @@ var Card = React.createClass({
   },
   componentWillReceiveProps: function (nextProps) {
     this.setState({
-      state: this.props.info["state"],
+      state: nextProps.info["state"],
       name: this.props.info["name"],
       title: this.props.info["title"],
       description: this.props.info["description"]
     });
+  },
+  componentDidMount: function () {
+
   },
   toggleModal: function () {
     this.setState({isOpen: true, state: "PENDING"});
