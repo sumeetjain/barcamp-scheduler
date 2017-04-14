@@ -21,5 +21,3 @@ You'll need to have `npm` installed. On Mac with Homebrew `brew install node`
 };```
 3. Start the server with `npm start`
 4. In browser navigate to `localhost:8080`
-
-
