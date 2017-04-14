@@ -1,4 +1,5 @@
 var React = require('react');
+var api = APP_CONFIG.api_url;
 
 const adminModal = {
   color: "black",
@@ -23,14 +24,14 @@ var SignUpModal = React.createClass({
   },
   componentDidMount: function () {
     xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/pending?id=' + this.state.id);
+    xhr.open('POST', api + '/pending?id=' + this.state.id);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
   },
   handleSubmit: function (e) {
     e.preventDefault();
     xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:3000/updatedata");
+    xhr.open("POST", api + "/updatedata");
     xhr.send(new FormData(e.target));
     this.props.close();
   },  

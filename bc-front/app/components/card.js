@@ -7,6 +7,7 @@ var Description = require('./card/description.js');
 var CategoryImage = require('./card/category_image.js');
 var SignUpModal = require('./signup.js');
 var MobileModal = require('./mobile.js');
+var api = APP_CONFIG.api_url;
 
 var boxStyle = {
   base: {
@@ -119,7 +120,7 @@ var Card = React.createClass({
   },
   cancelSubmit: function () {
     xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/cancel?id=' + this.state.id);
+    xhr.open('POST', api + '/cancel?id=' + this.state.id);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
     this.closeModal();
