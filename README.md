@@ -1,6 +1,6 @@
 ## Dev Installation
 
-Clone repo `git@github.com:omahacodeschool/barcamp-scheduler.git`
+Clone repo `git clone git@github.com:omahacodeschool/barcamp-scheduler.git`
 
 ### Back-end
 #### Installation
