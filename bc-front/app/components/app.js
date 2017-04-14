@@ -2,6 +2,7 @@ var React = require('react');
 var RowByTime = require('./row.js');
 var Radium = require('radium');
 var StyleRoot = Radium.StyleRoot;
+var api = APP_CONFIG.api_url;
 
 var App = React.createClass({
   interval: null,
@@ -25,7 +26,7 @@ var App = React.createClass({
   getUpdate: function() {
     var _this = this;
     xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:3000/getdata');
+    xhr.open('GET', api + '/getdata');
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
       response = JSON.parse(xhr.responseText);

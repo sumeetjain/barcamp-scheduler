@@ -4,6 +4,11 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 });
+var ExtendedDefinePlugin = require('extended-define-webpack-plugin');
+var appConfig = require('./app.config.js');
+var ExtendedDefinePluginConfig = new ExtendedDefinePlugin({
+  APP_CONFIG: appConfig
+});
 
 module.exports = {
   entry: __dirname + '/app/index.js',
@@ -20,5 +25,5 @@ module.exports = {
     }
     ]
   },
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [HTMLWebpackPluginConfig, ExtendedDefinePluginConfig]
 };
