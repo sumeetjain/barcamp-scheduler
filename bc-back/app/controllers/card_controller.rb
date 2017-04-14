@@ -11,8 +11,7 @@ class CardController < ApplicationController
   end
 
   def update
-		card = Card.find_by(id: params['id'])
-    card.update(params.permit(:name, :title, :description, :state))
+    Card.setValues(params)
   end
 
   def cancel
