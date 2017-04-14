@@ -7,17 +7,21 @@ class CardController < ApplicationController
 
   def pending
   	card = Card.find_by(id: params['id'])
-  	card.update(state: "PENDING")
+    card.statePending
   end
 
   def update
 		card = Card.find_by(id: params['id'])
-	  card.update(name: params['name'], title: params['title'], description: params['description'], state: "SET")
-	  redirect_to 'http://localhost:8080'
+    card.update(params.permit(:name, :title, :description, :state))
   end
 
   def cancel
     card = Card.find_by(id: params['id'])
-    card.update(state: "SIGNUP")
+    card.stateSignUp
+  end
+
+  def resetpending
+    cards = Card.where(state: "PENDING")
+    cards.update(state: "SIGNUP")
   end
 end

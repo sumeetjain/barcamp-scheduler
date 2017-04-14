@@ -102,17 +102,28 @@ var Card = React.createClass({
   },
   componentWillReceiveProps: function (nextProps) {
     this.setState({
-      state: this.props.info["state"],
+      state: nextProps.info["state"],
       name: this.props.info["name"],
       title: this.props.info["title"],
       description: this.props.info["description"]
     });
   },
+  componentDidMount: function () {
+
+  },
   toggleModal: function () {
-    this.setState({isOpen: true});
+    this.setState({isOpen: true, state: "PENDING"});
   },
   closeModal: function () {
     this.setState({isOpen: false});
+  },
+  cancelSubmit: function () {
+    xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/cancel?id=' + this.state.id);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+    this.closeModal();
+    this.setState({state: "SIGNUP"});
   },
   render: function() {
     if (this.state.category == "Creative") {
@@ -160,19 +171,19 @@ var Card = React.createClass({
       );
     }
     var modalBack = (
-      <div style={modalBackground} onClick={this.closeModal} />
+      <div style={modalBackground} onClick={this.cancelSubmit} />
     );
 
     if (window.innerWidth < 576) {
       var modal = (
-        <MobileModal id={this.state.id} />
+        <MobileModal close={this.closeModal} />
       )
     } else {
       var modal = (
-        <SignUpModal id={this.state.id} />
+        <SignUpModal id={this.state.id} close={this.closeModal} />
       )
     }
-
+    
     return (
       <div>
         {currentState}
