@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Category image changes to a prop value when passed 1`] = `
-<div>
+<div
+  style={
+    Object {
+      "float": "right",
+    }
+  }
+>
   <img
     src="./app/images/track_technology_2016.png"
     width="40"

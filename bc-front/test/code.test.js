@@ -3,6 +3,7 @@ var Title = require('../app/components/card/title.js');
 var Name = require('../app/components/card/name.js');
 var Description = require('../app/components/card/description.js');
 var CategoryLetter = require('../app/components/card/category_letter.js');
+var CategoryImage = require('../app/components/card/category_image.js');
 var renderer = require('react-test-renderer');
 
 test('Title changes to a prop value when passed', () => {
@@ -35,6 +36,6 @@ test('Category letter changes to a prop value when passed', () => {
 
 test('Category image changes to a prop value when passed', () => {
   var component = renderer.create(
-      <div><img src='./app/images/track_technology_2016.png' width="40" /></div>  ).toJSON();
+      <CategoryImage image='./app/images/track_technology_2016.png' />).toJSON();
   expect(component).toMatchSnapshot();
 });
