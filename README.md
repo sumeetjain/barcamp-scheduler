@@ -6,7 +6,9 @@ Clone repo `git clone git@github.com:omahacodeschool/barcamp-scheduler.git`
 #### Installation
 1. Create `.env` file in rails project root directory (`bc-back`) and add `REACT_URL = localhost:8080`
 2. `bundle install`
-3. Start the server with `rails s`
+3. Create database with `rake db:create`
+4. Seed database with `rake db:seed`
+4. Start the server with `rails s`
 
 ### Front-end
 #### Requirements
