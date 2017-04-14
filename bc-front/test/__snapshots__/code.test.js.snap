@@ -1,12 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Description changes to prop when passed 1`] = `
+exports[`Category image changes to a prop value when passed 1`] = `
+<div>
+  <img
+    src="./app/images/track_technology_2016.png"
+    width="40"
+  />
+</div>
+`;
+
+exports[`Category letter changes to a prop value when passed 1`] = `
+<div
+  style={
+    Object {
+      "bottom": "5px",
+      "color": "navy",
+      "fontFamily": "cursive",
+      "fontSize": "1.75em",
+      "position": "absolute",
+      "right": "15px",
+    }
+  }
+>
+  N
+</div>
+`;
+
+exports[`Description changes to a prop value when passed 1`] = `
 <div>
   Celiac kitsch poutine, tacos stumptown cardigan jianbing pug pickled kinfolk try-hard put a bird on it air plant activated charcoal. Swag kinfolk marfa cornhole, ennui try-hard narwhal blue bottle forage gastropub schlitz keytar. Bicycle rights schlitz farm-to-table woke biodiesel, shoreditch scenester four dollar toast fashion axe heirloom godard tbh DIY skateboard. Offal cliche hashtag franzen asymmetrical art party.
 </div>
 `;
 
-exports[`Name changes to prop when passed 1`] = `
+exports[`Name changes to a prop value when passed 1`] = `
 <div
   style={
     Object {
@@ -20,7 +46,7 @@ exports[`Name changes to prop when passed 1`] = `
 </div>
 `;
 
-exports[`Title changes to prop when passed 1`] = `
+exports[`Title changes to a prop value when passed 1`] = `
 <div
   style={
     Object {
