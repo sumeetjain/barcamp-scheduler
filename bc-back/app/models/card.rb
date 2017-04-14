@@ -27,20 +27,32 @@ class Card < ApplicationRecord
     "SET" => 2
   }
 
+  # Gets all information from the database and restructures into desired hash format
+  #
+  # returns hash of time -> {category -> {info}}
   def self.json
     cards = Card.all.order(:timeslot).as_json
     result = self.restructureJson(cards)
     return result
   end
 
+  # updates state of the card to PENDING
   def statePending
       self.update(state: "PENDING")
   end
 
+  # updates state of the card to SIGNUP
   def stateSignUp
       self.update(state: "SIGNUP")
   end
 
+  # updates name, title, and description on card from params from form
+  # only able to update if state is currently pending, 
+  #     as would be the case if no one else has signed up for the same slot
+  #
+  # params - from submit form
+  #          name, title, and description input in form
+  #          card id and state: SET included in params
   def self.setValues(params)
     card = self.find_by(id: params['id'])
     if card.state == "PENDING"
@@ -51,6 +63,9 @@ class Card < ApplicationRecord
 
   private
 
+  # cards - json result from database query
+  #
+  # returns restructured json as hash of time -> {category -> {info}}
   def self.restructureJson(cards)
     newJson = {}
     cards.each do |card|
@@ -59,6 +74,12 @@ class Card < ApplicationRecord
     return newJson
   end
 
+  # adds card to time if time already exists in hash
+  # makes new time and adds card if it doesn't exist in the hash yet
+  #
+  # card - info for a single card structured in a single hash of {id -> 0, time -> "9:00 AM", category -> "CREATIVE", etc
+  #
+  # returns the restructured json as hash of time -> {category -> {info}} with the card added
   def self.addcard(newJson, card)
     if newJson[card["timeslot"]]
       newJson[card["timeslot"]][card["category"]] = self.makeHash(card)
@@ -68,6 +89,10 @@ class Card < ApplicationRecord
     return newJson
   end
 
+
+  # card - info for a single card structured in a single hash of {id -> 0, time -> "9:00 AM", category -> "CREATIVE", etc
+  #
+  # returns a hash of only the info we want
   def self.makeHash(card)
     return {
       "id" => card["id"],
