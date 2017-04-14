@@ -19,4 +19,9 @@ class CardController < ApplicationController
     card = Card.find_by(id: params['id'])
     card.stateSignUp
   end
+
+  def resetpending
+    cards = Card.where(state: "PENDING")
+    cards.update(state: "SIGNUP")
+  end
 end
