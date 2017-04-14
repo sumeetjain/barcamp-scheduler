@@ -1,17 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  timeslot: 1
-  category: 1
-  name: MyString
-  title: MyString
-  description: MyString
-  state: 1
+  id: 0
+  timeslot: 0
+  category: 0
+  name: Null
+  title: Null
+  description: Null
+  state: 0
 
 two:
-  timeslot: 1
+  id: 1
+  timeslot: 0
   category: 1
-  name: MyString
-  title: MyString
-  description: MyString
+  name: Null
+  title: Null
+  description: Null
   state: 1
+
+three:
+  id: 2
+  timeslot: 0
+  category: 2
+  name: MyName
+  title: MyTitle
+  description: MyDescription
+  state: 2
+
+four:
+  id: 3
+  timeslot: 0
+  category: 3
+  name: Null
+  title: Null
+  description: Null
+  state: 0
