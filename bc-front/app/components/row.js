@@ -2,8 +2,6 @@ var React = require('react');
 var Radium = require('radium');
 var Card = require('./card.js')
 
-
-
 const center = {
   textAlign: "center",
   fontSize: "2.5em",
