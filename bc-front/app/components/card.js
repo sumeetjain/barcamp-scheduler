@@ -7,6 +7,7 @@ var Description = require('./card/description.js');
 var CategoryImage = require('./card/category_image.js');
 var SignUpModal = require('./signup.js');
 var MobileModal = require('./mobile.js');
+var Loader = require('react-loader');
 var api = APP_CONFIG.api_url;
 
 var boxStyle = {
@@ -98,19 +99,17 @@ var Card = React.createClass({
       name: this.props.info["name"],
       title: this.props.info["title"],
       description: this.props.info["description"],
-      isOpen: false
+      isOpen: false,
+      loaded: true
     }
   },
   componentWillReceiveProps: function (nextProps) {
     this.setState({
       state: nextProps.info["state"],
-      name: this.props.info["name"],
-      title: this.props.info["title"],
-      description: this.props.info["description"]
+      name: nextProps.info["name"],
+      title: nextProps.info["title"],
+      description: nextProps.info["description"]
     });
-  },
-  componentDidMount: function () {
-
   },
   toggleModal: function () {
     this.setState({isOpen: true, state: "PENDING"});
@@ -162,12 +161,14 @@ var Card = React.createClass({
     } else if (this.state.state == "SET") {
       var currentState = (
         <div style={box}>
+          <Loader loaded={this.state.loaded}>
           <Name name={this.state.name} />
           <CategoryImage image={this.state.catImageURL}/>
           <ClearFloats />
           <Title title={this.state.title} />
           <Description description={this.state.description} />
           <CategoryLetter letter={this.state.catLetter} />
+          </Loader>
         </div>
       );
     }
