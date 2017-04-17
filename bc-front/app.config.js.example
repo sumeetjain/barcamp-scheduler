@@ -1,6 +1,0 @@
-// The below example is for production deployment on Heroku. Change the api_url to your production location, or if developing locally change to the location of your Rails server (usually http://localhost:3000). You may also change the media_width variable for @media CSS changes.
-
-// module.exports = { 
-//   api_url: 'https://barcamp-scheduler.herokuapp.com',
-//   media_width: '576'
-// };
