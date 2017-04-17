@@ -1,3 +1,18 @@
 /bc-front/node_modules
 /bc-front/npm-debug.log
 /bc-front/app.config.js
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# Ignore secret keys
+.env

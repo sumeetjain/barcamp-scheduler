@@ -10766,6 +10766,8 @@ var CategoryImage = __webpack_require__(103);
 var SignUpModal = __webpack_require__(110);
 var MobileModal = __webpack_require__(108);
 var api = "";
+var media_width = parseInt(__webpack_require__.i({"api_url":""}).media_width);
+var media = '@media (min-width: ' + media_width + 'px)';
 
 var boxStyle = {
   base: {
@@ -10777,7 +10779,7 @@ var boxStyle = {
     paddingRight: "5px",
     position: "relative",
     margin: "0 auto 10px auto",
-    '@media (min-width: 576px)': {
+    [media]: {
       marginRight: "10px"
     }
   },
@@ -10861,9 +10863,9 @@ var Card = React.createClass({
   componentWillReceiveProps: function (nextProps) {
     this.setState({
       state: nextProps.info["state"],
-      name: this.props.info["name"],
-      title: this.props.info["title"],
-      description: this.props.info["description"]
+      name: nextProps.info["name"],
+      title: nextProps.info["title"],
+      description: nextProps.info["description"]
     });
   },
   componentDidMount: function () {},
@@ -10925,7 +10927,7 @@ var Card = React.createClass({
     }
     var modalBack = React.createElement('div', { style: modalBackground, onClick: this.cancelSubmit });
 
-    if (window.innerWidth < 576) {
+    if (window.innerWidth < media_width) {
       var modal = React.createElement(MobileModal, { close: this.closeModal });
     } else {
       var modal = React.createElement(SignUpModal, { id: this.state.id, close: this.closeModal });
