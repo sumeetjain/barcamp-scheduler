@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   post "pending" => 'card#pending'
   post "cancel" => 'card#cancel'
   get "resetpending" => 'card#resetpending'
+  get "whatever" => redirect('/reset.html')
+  post "adminupdate" => 'card#adminupdate'
 end

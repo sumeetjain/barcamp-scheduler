@@ -8,6 +8,8 @@ var CategoryImage = require('./card/category_image.js');
 var SignUpModal = require('./signup.js');
 var MobileModal = require('./mobile.js');
 var api = APP_CONFIG.api_url;
+var media_width = parseInt(APP_CONFIG.media_width);
+var media = '@media (min-width: ' + media_width + 'px)'
 
 var boxStyle = {
   base: {
@@ -19,7 +21,7 @@ var boxStyle = {
     paddingRight: "5px",
     position: "relative",
     margin: "0 auto 10px auto",
-    '@media (min-width: 576px)': {
+    [media]: {
       marginRight: "10px"
     },
   },
@@ -104,9 +106,9 @@ var Card = React.createClass({
   componentWillReceiveProps: function (nextProps) {
     this.setState({
       state: nextProps.info["state"],
-      name: this.props.info["name"],
-      title: this.props.info["title"],
-      description: this.props.info["description"]
+      name: nextProps.info["name"],
+      title: nextProps.info["title"],
+      description: nextProps.info["description"]
     });
   },
   componentDidMount: function () {
@@ -175,7 +177,7 @@ var Card = React.createClass({
       <div style={modalBackground} onClick={this.cancelSubmit} />
     );
 
-    if (window.innerWidth < 576) {
+    if (window.innerWidth < media_width) {
       var modal = (
         <MobileModal close={this.closeModal} />
       )
