@@ -38,16 +38,11 @@ class Card < ApplicationRecord
 
   # updates state of the card to PENDING
   def statePending
-      self.update(state: "PENDING")
-  end
-
-  # updates state of the card to SIGNUP
-  def stateSignUp
-      self.update(state: "SIGNUP")
+     self.update(state: "PENDING")
   end
 
   # updates name, title, and description on card from params from form
-  # only able to update if state is currently pending, 
+  # only able to update if state is not set, 
   #     as would be the case if no one else has signed up for the same slot
   #
   # params - from submit form
@@ -55,9 +50,22 @@ class Card < ApplicationRecord
   #          card id and state: SET included in params
   def self.setValues(params)
     card = self.find_by(id: params['id'])
-    if card.state == "PENDING"
+    if card.state != "SET"
       card.update(params.permit(:name, :title, :description, :state))
     end
+  end
+
+  # updates state of the card to SIGNUP
+  def self.cancel(params)
+    card = Card.find_by(id: params['id'])
+    if card.state != "SET"
+      card.update(state: "SIGNUP")
+    end
+  end
+
+  def self.pendingToSignUp
+    cards = Card.where(state: "PENDING")
+    cards.update(state: "SIGNUP")
   end
 
 
