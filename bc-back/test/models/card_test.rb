@@ -30,6 +30,12 @@ class CardTest < ActiveSupport::TestCase
 		assert_equal "PENDING", card.state, "state is pending"
 	end
 
+	test "doesn't change set to pending" do
+		card = Card.find_by(id: 2)
+		card.statePending
+		assert_not_equal "PENDING", card.state, "state is not pending"
+	end
+
 	test "updates info" do
 		params = ActionController::Parameters.new({:id => 1, :name => "Han Solo", :title => "The Millenium Falcon", :description => "All about the the fastest ship in the galaxy."})
 		Card.setValues(params)

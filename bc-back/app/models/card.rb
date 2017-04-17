@@ -38,7 +38,9 @@ class Card < ApplicationRecord
 
   # updates state of the card to PENDING
   def statePending
+    if self.state != "SET"
      self.update(state: "PENDING")
+    end
   end
 
   # updates name, title, and description on card from params from form
