@@ -70,6 +70,16 @@ class Card < ApplicationRecord
     cards.update(state: "SIGNUP")
   end
 
+  def self.resetValues(params)
+    params['description'] = nil
+    params['title'] = nil
+    params['name'] = nil
+    params['state'] = "SIGNUP"
+    cards = Card.where(timeslot: params["timeslot"])
+    card = cards.where(category: params["category"])
+    card.update(params.permit(:name, :title, :description, :state))
+  end
+
 
   private
 

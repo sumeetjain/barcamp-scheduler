@@ -21,4 +21,8 @@ class CardController < ApplicationController
   def resetpending
     Card.pendingToSignUp
   end
+
+  def adminupdate
+    Card.resetValues(params)
+  end
 end
