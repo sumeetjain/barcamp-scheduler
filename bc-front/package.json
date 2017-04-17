@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "build-rails": "webpack && cp ./build/* ../bc-back/public/",
     "start": "webpack-dev-server",
     "test": "jest"
   },
