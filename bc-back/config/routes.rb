@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get "resetpending" => 'card#resetpending'
   get "whatever" => redirect('/reset.html')
   post "adminupdate" => 'card#adminupdate'
+  get "/" => redirect('index.html')
 end
