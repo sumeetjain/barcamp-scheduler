@@ -11306,7 +11306,7 @@ var Card = React.createClass({
       var url = api + "/images/track_entrepreneurship_2016.png";
       var letter = "E";
     } else if (this.props.category == "Technology") {
-      var url = api + "images/track_technology_2016.png";
+      var url = api + "/images/track_technology_2016.png";
       var letter = "T";
     } else if (this.props.category == "Kitchen Sink") {
       var url = api + "/images/track_kitchen-sink_2016.png";

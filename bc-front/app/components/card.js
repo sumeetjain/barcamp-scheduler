@@ -84,7 +84,7 @@ var Card = React.createClass({
       var letter = "E"
     }
     else if (this.props.category == "Technology")  {
-      var url = api + "images/track_technology_2016.png"
+      var url = api + "/images/track_technology_2016.png"
       var letter = "T"
     }
     else if (this.props.category == "Kitchen Sink")  {
