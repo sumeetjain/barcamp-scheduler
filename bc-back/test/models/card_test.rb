@@ -66,4 +66,15 @@ class CardTest < ActiveSupport::TestCase
 		assert_not_equal "SIGNUP", Card.where(:id => 1).pluck(:state)[0], "state is not signup"
 	end
 
+	test "changes pending to signup" do
+		Card.pendingToSignUp
+		assert_equal "SIGNUP", Card.where(:id => 1).pluck(:state)[0], "state is signup"
+	end
+
+
+	test "doesn't change set to signup" do
+		Card.pendingToSignUp
+		assert_not_equal "SIGNUP", Card.where(:id => 2).pluck(:state)[0], "state is signup"
+	end
+
 end
