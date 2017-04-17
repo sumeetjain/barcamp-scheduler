@@ -15,12 +15,14 @@ class CardController < ApplicationController
   end
 
   def cancel
-    card = Card.find_by(id: params['id'])
-    card.stateSignUp
+    Card.cancel(params)
   end
 
   def resetpending
-    cards = Card.where(state: "PENDING")
-    cards.update(state: "SIGNUP")
+    Card.pendingToSignUp
+  end
+
+  def adminupdate
+    Card.resetValues(params)
   end
 end
