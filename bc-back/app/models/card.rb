@@ -71,11 +71,12 @@ class Card < ApplicationRecord
   end
 
   def self.resetValues(params)
-    params['description'] = null
-    params['title'] = null
-    params['name'] = null
+    params['description'] = nil
+    params['title'] = nil
+    params['name'] = nil
     params['state'] = "SIGNUP"
-    card = Card.where(["timeslot = ? and category = ?", params["timeslot"], params["category"]])
+    cards = Card.where(timeslot: params["timeslot"])
+    card = cards.where(category: params["category"])
     card.update(params.permit(:name, :title, :description, :state))
   end
 
