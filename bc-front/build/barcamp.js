@@ -11620,10 +11620,7 @@ const row = {
   flexDirection: "column",
   '@media (min-width: 500px)': {
     flexDirection: "row"
-  }
-};
-
-const centerDiv = {
+  },
   margin: "0 auto"
 };
 
@@ -11641,7 +11638,7 @@ var RowByTime = React.createClass({
   render: function () {
     return React.createElement(
       'div',
-      { style: centerDiv },
+      null,
       React.createElement(
         'div',
         { style: center },

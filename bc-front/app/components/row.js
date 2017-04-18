@@ -15,9 +15,6 @@ const row = {
   '@media (min-width: 500px)': {
       flexDirection: "row"
   },
-}
-
-const centerDiv = {
   margin: "0 auto"
 }
 
@@ -32,7 +29,7 @@ var RowByTime = React.createClass({
   },
   render: function() {
     return(
-      <div style={centerDiv}>
+      <div>
         <div style={center}>{this.props.time}</div>
         <br />
         <div style={row}>
