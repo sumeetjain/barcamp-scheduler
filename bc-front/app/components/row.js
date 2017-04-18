@@ -1,8 +1,6 @@
 var React = require('react');
 var Radium = require('radium');
-var Card = require('./card.js')
-
-
+var Card = require('./card.js');
 
 const center = {
   textAlign: "center",
@@ -15,8 +13,9 @@ const row = {
   display: "flex",
   flexDirection: "column",
   '@media (min-width: 500px)': {
-      flexDirection: "row"
-  },
+      flexDirection: "row",
+      justifyContent: "space-around"
+  }
 }
 
 var RowByTime = React.createClass({

@@ -39,7 +39,7 @@ var SignUpModal = React.createClass({
     return(
       <div>
         <div style={adminModal}>
-          <form action="http://localhost:3000/updatedata" method="post" onSubmit={this.handleSubmit} >
+          <form action="/updatedata" method="post" onSubmit={this.handleSubmit} >
             <p>Full Name: <input type="text" name="name" /></p>
             <p>Title: <input type="text" name="title" /></p>
             <p>Description: <textarea name="description" /></p>

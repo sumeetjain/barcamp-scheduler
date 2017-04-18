@@ -11306,7 +11306,7 @@ var Card = React.createClass({
       var url = api + "/images/track_entrepreneurship_2016.png";
       var letter = "E";
     } else if (this.props.category == "Technology") {
-      var url = api + "images/track_technology_2016.png";
+      var url = api + "/images/track_technology_2016.png";
       var letter = "T";
     } else if (this.props.category == "Kitchen Sink") {
       var url = api + "/images/track_kitchen-sink_2016.png";
@@ -11619,7 +11619,8 @@ const row = {
   display: "flex",
   flexDirection: "column",
   '@media (min-width: 500px)': {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "space-around"
   }
 };
 
@@ -11710,7 +11711,7 @@ var SignUpModal = React.createClass({
         { style: adminModal },
         React.createElement(
           "form",
-          { action: "http://localhost:3000/updatedata", method: "post", onSubmit: this.handleSubmit },
+          { action: "/updatedata", method: "post", onSubmit: this.handleSubmit },
           React.createElement(
             "p",
             null,
