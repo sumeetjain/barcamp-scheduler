@@ -11623,6 +11623,10 @@ const row = {
   }
 };
 
+const centerDiv = {
+  margin: "0 auto"
+};
+
 var RowByTime = React.createClass({
   displayName: 'RowByTime',
 
@@ -11637,7 +11641,7 @@ var RowByTime = React.createClass({
   render: function () {
     return React.createElement(
       'div',
-      null,
+      { style: centerDiv },
       React.createElement(
         'div',
         { style: center },

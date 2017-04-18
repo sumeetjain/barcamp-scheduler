@@ -1,8 +1,6 @@
 var React = require('react');
 var Radium = require('radium');
-var Card = require('./card.js')
-
-
+var Card = require('./card.js');
 
 const center = {
   textAlign: "center",
@@ -19,6 +17,10 @@ const row = {
   },
 }
 
+const centerDiv = {
+  margin: "0 auto"
+}
+
 var RowByTime = React.createClass({
   getDefaultProps: function () {
     return {
@@ -30,7 +32,7 @@ var RowByTime = React.createClass({
   },
   render: function() {
     return(
-      <div>
+      <div style={centerDiv}>
         <div style={center}>{this.props.time}</div>
         <br />
         <div style={row}>
