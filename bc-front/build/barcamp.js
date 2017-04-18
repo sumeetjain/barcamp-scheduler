@@ -11619,9 +11619,9 @@ const row = {
   display: "flex",
   flexDirection: "column",
   '@media (min-width: 500px)': {
-    flexDirection: "row"
-  },
-  margin: "0 auto"
+    flexDirection: "row",
+    justifyContent: "space-around"
+  }
 };
 
 var RowByTime = React.createClass({
