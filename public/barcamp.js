@@ -11710,7 +11710,7 @@ var SignUpModal = React.createClass({
         { style: adminModal },
         React.createElement(
           "form",
-          { action: "http://localhost:3000/updatedata", method: "post", onSubmit: this.handleSubmit },
+          { action: "/updatedata", method: "post", onSubmit: this.handleSubmit },
           React.createElement(
             "p",
             null,
