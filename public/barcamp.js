@@ -10930,7 +10930,7 @@ var React = __webpack_require__(6);
 var RowByTime = __webpack_require__(112);
 var Radium = __webpack_require__(39);
 var StyleRoot = Radium.StyleRoot;
-var api = "http://localhost:3000";
+var api = "http://schedule.barcampomaha.org";
 
 var App = React.createClass({
   displayName: 'App',
@@ -11004,7 +11004,7 @@ var Description = __webpack_require__(106);
 var CategoryImage = __webpack_require__(104);
 var SignUpModal = __webpack_require__(113);
 var MobileModal = __webpack_require__(111);
-var api = "http://localhost:3000";
+var api = "http://schedule.barcampomaha.org";
 var media_width = parseInt("576");
 var media = '@media (min-width: ' + media_width + 'px)';
 
@@ -11532,7 +11532,7 @@ module.exports = Radium(RowByTime);
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
-var api = "http://localhost:3000";
+var api = "http://schedule.barcampomaha.org";
 
 const adminModal = {
   color: "#1e122b",
