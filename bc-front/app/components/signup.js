@@ -2,18 +2,21 @@ var React = require('react');
 var api = APP_CONFIG.api_url;
 
 const adminModal = {
-  color: "black",
-  width: "400px",
-  height: "300px",
+  color: "#1e122b",
+  width: "600px",
+  height: "400px",
+  padding: "30px",
   position: "fixed",
   zIndex: "9999",
   left: "50%",
   top: "50%",
-  marginLeft: "-185px",
-  marginTop: "-100px",
+  marginLeft: "-300px",
+  marginTop: "-200px",
   background: "#fff",
-  border: "1px solid #ccc",
-  borderRadius: "10px"
+  borderTop: "10px solid #c24442",
+  borderRight: "10px solid #efd0ce",
+  borderBottom: "10px solid #26b5a1",
+  borderLeft: "10px solid #745b97",
 }
 
 var SignUpModal = React.createClass({

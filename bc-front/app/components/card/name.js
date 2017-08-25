@@ -1,9 +1,14 @@
 var React = require('react');
 
 const name = {
-  paddingTop: "25px",
-  float: "left",
-  fontSize: "0.75em"
+  marginTop: "20px",
+  fontSize: "16px",
+  fontWeight: "200",
+  display: "inline-block",
+  padding: "1px 6px",
+  marginBottom: "12px",
+  backgroundColor: "#fff",
+  color: "#1e122b"
 };
 
 var Name = React.createClass({

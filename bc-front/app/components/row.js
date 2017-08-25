@@ -3,10 +3,16 @@ var Radium = require('radium');
 var Card = require('./card.js');
 
 const center = {
-  textAlign: "center",
+  textAlign: "center"
+}
+
+const timeStyle = {
   fontSize: "2.5em",
-  color: "red",
-  fontFamily: "Helvetica",
+  margin: "45px 0 30px",
+  color: "#1e122b",
+  backgroundColor: "#fff",
+  padding: "8px 20px",
+  display: "inline-block",
 }
 
 const row = {
@@ -14,7 +20,7 @@ const row = {
   flexDirection: "column",
   '@media (min-width: 500px)': {
       flexDirection: "row",
-      justifyContent: "space-around"
+      justifyContent: "center"
   }
 }
 
@@ -30,7 +36,9 @@ var RowByTime = React.createClass({
   render: function() {
     return(
       <div>
-        <div style={center}>{this.props.time}</div>
+        <div style={center}>
+          <span style={timeStyle}>{this.props.time}</span>
+        </div>
         <br />
         <div style={row}>
           <Card info={this.props.info["Creative"]} category="Creative" />

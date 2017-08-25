@@ -1,5 +1,11 @@
 var React = require('react');
 
+const descriptionStyle = {
+  fontWeight: "200",
+  fontSize: "16px",
+  lineHeight: "1.5",
+}
+
 var Description = React.createClass({
   getDefaultProps: function () {
     return {
@@ -8,7 +14,7 @@ var Description = React.createClass({
   },
   render: function() {
     return(
-      <div>{this.props.description}</div>
+      <div style={descriptionStyle}>{this.props.description}</div>
     );
   }
 });

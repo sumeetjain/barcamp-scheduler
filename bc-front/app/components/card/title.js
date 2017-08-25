@@ -1,7 +1,8 @@
 var React = require('react');
 
 const title = {
-  fontSize: "1.5em"
+  fontSize: "28px",
+  marginBottom: "3px"
 };
 
 var Title = React.createClass({

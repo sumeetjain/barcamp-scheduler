@@ -2,6 +2,8 @@ var React = require('react');
 var Radium = require('radium');
 var Name = require('./card/name.js');
 var Title = require('./card/title.js');
+var SignupContent = require('./card/signup_content.js');
+var PendingContent = require('./card/pending_content.js');
 var CategoryLetter = require('./card/category_letter.js');
 var Description = require('./card/description.js');
 var CategoryImage = require('./card/category_image.js');
@@ -11,43 +13,46 @@ var api = APP_CONFIG.api_url;
 var media_width = parseInt(APP_CONFIG.media_width);
 var media = '@media (min-width: ' + media_width + 'px)'
 
+var colors = {
+  "Creative":     "#c24442",
+  "Entrepreneur": "#efd0ce",
+  "Technology":   "#26b5a1",
+  "Kitchen Sink": "#745b97",
+}
+
+var boxHoverStyle = {
+  ':hover': {
+    cursor: "pointer",
+    textDecoration: "underline"
+  }
+}
+
 var boxStyle = {
   base: {
-    width: "300px",
-    height: "300px",
-    backgroundColor: "grey",
-    fontFamily: "Helvetica",
-    paddingLeft: "5px",
-    paddingRight: "5px",
+    width: "310px",
+    height: "310px",
+    borderWidth: "5px",
+    borderStyle: "solid",
+    padding: "10px 20px 20px",
     position: "relative",
-    margin: "0 auto 10px auto",
+    margin: "0 12px",
+    overflowY: "auto",
     [media]: {
-      marginRight: "10px"
     },
+    ':hover': {
+    }
   },
   creative: {
-    backgroundColor: "pink",
-    ':hover': {
-      backgroundColor: "red"
-    }
+    borderColor: colors["Creative"],
   },
   entrepreneur: {
-    backgroundColor: "lightblue",
-    ':hover': {
-      backgroundColor: "blue"
-    }
+    borderColor: colors["Entrepreneur"],
   },
   technology: {
-    backgroundColor: "lightgreen",
-    ':hover': {
-      backgroundColor: "green"
-    }
+    borderColor: colors["Technology"],
   },
   kitchenSink: {
-    backgroundColor: "lightyellow",
-    ':hover': {
-      backgroundColor: "yellow"
-    }
+    borderColor: colors["Kitchen Sink"],
   }
 }
 
@@ -63,7 +68,7 @@ const modalBackground = {
   height: "100vh",
   top: "0",
   left: "0"
-  }
+}
 
 var ClearFloats = React.createClass({
   render: function() {
@@ -76,22 +81,23 @@ var ClearFloats = React.createClass({
 var Card = React.createClass({
   getInitialState: function () {
     if (this.props.category == "Creative") {
-      var url = api + "/images/track_creative_2016.png"
+      var url = api + "/images/tracks-creative.png"
       var letter = "C"
     }
     else if (this.props.category == "Entrepreneur")  {
-      var url = api + "/images/track_entrepreneurship_2016.png"
+      var url = api + "/images/tracks-entrepreneur.png"
       var letter = "E"
     }
     else if (this.props.category == "Technology")  {
-      var url = api + "/images/track_technology_2016.png"
+      var url = api + "/images/tracks-technology.png"
       var letter = "T"
     }
     else if (this.props.category == "Kitchen Sink")  {
-      var url = api + "/images/track_kitchen-sink_2016.png"
+      var url = api + "/images/tracks-kitchen-sink.png"
       var letter = "K"
     }
     return {
+      color: colors[this.props.category],
       catImageURL: url,
       catLetter: letter,
       category: this.props.category,
@@ -130,46 +136,43 @@ var Card = React.createClass({
   },
   render: function() {
     if (this.state.category == "Creative") {
-      box = [boxStyle.base, boxStyle.creative]
+      box = [boxStyle.base, boxStyle.creative];
     }
     else if (this.state.category == "Entrepreneur")  {
-      box = [boxStyle.base, boxStyle.entrepreneur]
+      box = [boxStyle.base, boxStyle.entrepreneur];
     }
     else if (this.state.category == "Technology")  {
-      box = [boxStyle.base, boxStyle.technology]
+      box = [boxStyle.base, boxStyle.technology];
     }
     else if (this.state.category == "Kitchen Sink")  {
-      box = [boxStyle.base, boxStyle.kitchenSink]
+      box = [boxStyle.base, boxStyle.kitchenSink];
     }
+    var signupCardStyle = box.concat(boxHoverStyle);
+
     if (this.state.state == "SIGNUP") {
       var currentState = (
-        <div onClick={this.toggleModal} style={box}>
-          <CategoryImage image={this.state.catImageURL} />
+        <div onClick={this.toggleModal} style={signupCardStyle}>
+          <CategoryImage image={this.state.catImageURL} bgColor={this.state.color} />
           <ClearFloats />
-          <Title title="Sign up for this slot!" />
-          <Description description="Click here to sign up!" />
-          <CategoryLetter letter={this.state.catLetter} />
+          <SignupContent />
         </div>
       );
     } else if (this.state.state == "PENDING") {
       var currentState = (
         <div style={box}>
-          <CategoryImage image={this.state.catImageURL}/>
+          <CategoryImage image={this.state.catImageURL} bgColor={this.state.color} />
           <ClearFloats />
-          <Title title="Get outta here!" />
-          <Description description="Someone is currently attempting to sign up for this time slot. Bug them if you think they left it open in error :D" />
-          <CategoryLetter letter={this.state.catLetter} />
+          <PendingContent />
         </div>
       );
     } else if (this.state.state == "SET") {
       var currentState = (
         <div style={box}>
           <Name name={this.state.name} />
-          <CategoryImage image={this.state.catImageURL}/>
+          <CategoryImage image={this.state.catImageURL} bgColor={this.state.color}/>
           <ClearFloats />
           <Title title={this.state.title} />
           <Description description={this.state.description} />
-          <CategoryLetter letter={this.state.catLetter} />
         </div>
       );
     }
