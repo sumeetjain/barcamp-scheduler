@@ -10,6 +10,7 @@ var CategoryImage = require('./card/category_image.js');
 var SignUpModal = require('./signup.js');
 var MobileModal = require('./mobile.js');
 var api = APP_CONFIG.api_url;
+
 var media_width = parseInt(APP_CONFIG.media_width);
 var media = '@media (min-width: ' + media_width + 'px)'
 
@@ -29,15 +30,18 @@ var boxHoverStyle = {
 
 var boxStyle = {
   base: {
-    width: "310px",
-    height: "310px",
-    borderWidth: "5px",
+    width: "100vw",
+    // height: "100vw",
+    borderWidth: "10px",
     borderStyle: "solid",
     padding: "10px 20px 20px",
     position: "relative",
-    margin: "0 12px",
     overflowY: "auto",
     [media]: {
+      borderWidth: "5px",
+      width: "310px",
+      height: "310px",
+      margin: "0 12px",
     },
     ':hover': {
     }
@@ -186,7 +190,7 @@ var Card = React.createClass({
       )
     } else {
       var modal = (
-        <SignUpModal id={this.state.id} close={this.closeModal} />
+        <SignUpModal id={this.state.id} category={this.state.category} close={this.closeModal} />
       )
     }
     

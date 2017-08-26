@@ -1,17 +1,63 @@
 var React = require('react');
+var Radium = require('radium');
 var api = APP_CONFIG.api_url;
+
+var media_width = parseInt(APP_CONFIG.media_width);
+var media = '@media (min-width: ' + media_width + 'px)'
+
+const signupStyles = {
+  head1: {
+    fontSize: "18px",
+    fontWeight: "200",
+    textAlign: "center",
+    marginBottom: "8px",
+    color: "#1e122b",
+  },
+  head2: {
+    color: "#1e122b",
+    fontSize: "18px",
+    textAlign: "center",
+    textTransform: "uppercase",
+    marginBottom: "24px",
+    paddingBottom: "24px",
+    borderBottom: "1px solid #eee"
+  },
+  field: {
+    textAlign: "center",
+    color: "#1e122b",
+    border: "2px solid #ccc",
+    display: "block",
+    width: "100%",
+    padding: "6px",
+    marginBottom: "18px",
+    fontSize: "18px",
+    fontWeight: "200"
+  },
+  button: {
+    display: "block",
+    width: "100%",
+    padding: "16px 0",
+    textAlign: "center",
+    textTransform: "uppercase",
+    border: "none",
+    backgroundColor: "#1e122b",
+    fontSize: "22px",
+    color: "#fff",
+    cursor: "pointer",
+    letterSpacing: "2px"
+  }
+}
 
 const adminModal = {
   color: "#1e122b",
-  width: "600px",
-  height: "400px",
-  padding: "30px",
+  width: "700px",
+  padding: "40px",
   position: "fixed",
   zIndex: "9999",
   left: "50%",
   top: "50%",
-  marginLeft: "-300px",
-  marginTop: "-200px",
+  marginLeft: "-350px",
+  marginTop: "-250px",
   background: "#fff",
   borderTop: "10px solid #c24442",
   borderRight: "10px solid #efd0ce",
@@ -22,7 +68,8 @@ const adminModal = {
 var SignUpModal = React.createClass({
   getInitialState: function () {
     return {
-      id: this.props.id
+      id: this.props.id,
+      category: this.props.category,
     }
   },
   componentDidMount: function () {
@@ -30,6 +77,9 @@ var SignUpModal = React.createClass({
     xhr.open('POST', api + '/pending?id=' + this.state.id);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
+
+    var nameField = document.querySelector("form input[name=name]");
+    nameField.focus();
   },
   handleSubmit: function (e) {
     e.preventDefault();
@@ -40,20 +90,26 @@ var SignUpModal = React.createClass({
   },  
   render: function () {
     return(
-      <div>
-        <div style={adminModal}>
-          <form action="/updatedata" method="post" onSubmit={this.handleSubmit} >
-            <p>Full Name: <input type="text" name="name" /></p>
-            <p>Title: <input type="text" name="title" /></p>
-            <p>Description: <textarea name="description" /></p>
-            <input type="text" name="id" value={this.state.id} hidden />
-            <input type="text" name="state" value="SET" hidden />
-            <input type="submit" />
-          </form>
+      <div style={adminModal}>
+        <div style={signupStyles.head1}>
+          You're signing up to give a talk in:
         </div>
+        <div style={signupStyles.head2}>{this.state.category}</div>
+
+        <form action="/updatedata" method="post" onSubmit={this.handleSubmit} >
+
+          <input style={signupStyles.field} type="text" name="name" placeholder="Your Name" required />
+          <input style={signupStyles.field} type="text" name="title" placeholder="Talk Title" required />
+          <textarea style={signupStyles.field} name="description" placeholder="What is your talk about?" required rows="4" />
+
+          <input type="hidden" name="id" value={this.state.id} />
+          <input type="hidden" name="state" value="SET" />
+
+          <input style={signupStyles.button} type="submit" value="Sign me up!" />
+        </form>
       </div>
     )
   }
 });
 
-module.exports = SignUpModal; 
+module.exports = Radium(SignUpModal); 

@@ -2,17 +2,24 @@ var React = require('react');
 var Radium = require('radium');
 var Card = require('./card.js');
 
+var media_width = parseInt(APP_CONFIG.media_width);
+var media = '@media (min-width: ' + media_width + 'px)'
+
 const center = {
   textAlign: "center"
 }
 
 const timeStyle = {
   fontSize: "2.5em",
-  margin: "45px 0 30px",
   color: "#1e122b",
   backgroundColor: "#fff",
-  padding: "8px 20px",
-  display: "inline-block",
+  padding: "20px",
+  display: "block",
+  [media]: {
+    display: "inline-block",
+    margin: "45px 0 30px",
+    padding: "8px 20px",
+  },
 }
 
 const row = {
@@ -39,7 +46,7 @@ var RowByTime = React.createClass({
         <div style={center}>
           <span style={timeStyle}>{this.props.time}</span>
         </div>
-        <br />
+
         <div style={row}>
           <Card info={this.props.info["Creative"]} category="Creative" />
           <Card info={this.props.info["Entrepreneur"]} category="Entrepreneur" />

@@ -39,8 +39,9 @@ var App = React.createClass({
   },
   render: function() {
     var allRows = this.state.time.map((time) =>
-      <RowByTime time={time} info={this.state.info[time]} />
+      <RowByTime key={time} time={time} info={this.state.info[time]} />
     );
+
     return(
       <StyleRoot>
         {allRows}

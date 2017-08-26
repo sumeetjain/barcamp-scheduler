@@ -1,9 +1,16 @@
 var React = require('react');
+var Radium = require('radium');
+
+var media_width = parseInt(APP_CONFIG.media_width);
+var media = '@media (min-width: ' + media_width + 'px)'
 
 const signupTitleStyle = {
   fontSize: "1.5em",
   textAlign: "center",
-  marginTop: "44%"
+
+  [media]: {
+    marginTop: "44%"
+  }
 };
 
 var SignupContent = React.createClass({
@@ -19,4 +26,4 @@ var SignupContent = React.createClass({
   }
 });
 
-module.exports = SignupContent;
+module.exports = Radium(SignupContent);

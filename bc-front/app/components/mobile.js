@@ -2,17 +2,21 @@ var React = require('react');
 
 const adminModal = {
   color: "black",
-  width: "200px",
-  height: "100px",
+  width: "100vw",
   position: "fixed",
   zIndex: "9999",
-  left: "50%",
-  top: "50%",
-  marginLeft: "-50px",
-  marginTop: "-25px",
+  left: "0",
+  top: "20vh",
   background: "#fff",
-  border: "1px solid #ccc",
-  borderRadius: "10px",
+  border: "solid #666",
+  borderWidth: "10px 0",
+  padding: "30px 10px",
+  fontSize: "22px",
+  textAlign: "center"
+}
+
+const thin = {
+  fontWeight: "200"
 }
 
 var MobileModal = React.createClass({
@@ -20,7 +24,9 @@ var MobileModal = React.createClass({
     return(
       <div>
         <div style={adminModal}>
-          <p>Stop being lazy! Go to the signup computers!</p>
+          <p>Yay! How exciting!</p>
+          <p style={thin}>But you have to come<br />to the signup tables.</p>
+          <p style={thin}>(Sorry.)</p>
         </div>
       </div>
     )
