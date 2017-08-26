@@ -549,7 +549,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 var ReactDOMComponentFlags = __webpack_require__(77);
 
 var invariant = __webpack_require__(1);
@@ -1826,6 +1826,67 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _enhancer = __webpack_require__(67);
+
+var _enhancer2 = _interopRequireDefault(_enhancer);
+
+var _plugins = __webpack_require__(72);
+
+var _plugins2 = _interopRequireDefault(_plugins);
+
+var _style = __webpack_require__(164);
+
+var _style2 = _interopRequireDefault(_style);
+
+var _styleRoot = __webpack_require__(162);
+
+var _styleRoot2 = _interopRequireDefault(_styleRoot);
+
+var _getState = __webpack_require__(69);
+
+var _getState2 = _interopRequireDefault(_getState);
+
+var _keyframes = __webpack_require__(165);
+
+var _keyframes2 = _interopRequireDefault(_keyframes);
+
+var _resolveStyles = __webpack_require__(73);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Radium(ComposedComponent) {
+  return (0, _enhancer2.default)(ComposedComponent);
+}
+
+Radium.Plugins = _plugins2.default;
+Radium.Style = _style2.default;
+Radium.StyleRoot = _styleRoot2.default;
+Radium.getState = _getState2.default;
+Radium.keyframes = _keyframes2.default;
+
+if (process.env.NODE_ENV !== 'production') {
+  Radium.TestMode = {
+    clearState: _resolveStyles.__clearStateForTests,
+    disable: _resolveStyles.__setTestMode.bind(null, false),
+    enable: _resolveStyles.__setTestMode.bind(null, true)
+  };
+}
+
+exports.default = Radium;
+module.exports = exports['default'];
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2034,67 +2095,6 @@ var DOMProperty = {
 };
 
 module.exports = DOMProperty;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _enhancer = __webpack_require__(67);
-
-var _enhancer2 = _interopRequireDefault(_enhancer);
-
-var _plugins = __webpack_require__(72);
-
-var _plugins2 = _interopRequireDefault(_plugins);
-
-var _style = __webpack_require__(164);
-
-var _style2 = _interopRequireDefault(_style);
-
-var _styleRoot = __webpack_require__(162);
-
-var _styleRoot2 = _interopRequireDefault(_styleRoot);
-
-var _getState = __webpack_require__(69);
-
-var _getState2 = _interopRequireDefault(_getState);
-
-var _keyframes = __webpack_require__(165);
-
-var _keyframes2 = _interopRequireDefault(_keyframes);
-
-var _resolveStyles = __webpack_require__(73);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Radium(ComposedComponent) {
-  return (0, _enhancer2.default)(ComposedComponent);
-}
-
-Radium.Plugins = _plugins2.default;
-Radium.Style = _style2.default;
-Radium.StyleRoot = _styleRoot2.default;
-Radium.getState = _getState2.default;
-Radium.keyframes = _keyframes2.default;
-
-if (process.env.NODE_ENV !== 'production') {
-  Radium.TestMode = {
-    clearState: _resolveStyles.__clearStateForTests,
-    disable: _resolveStyles.__setTestMode.bind(null, false),
-    enable: _resolveStyles.__setTestMode.bind(null, true)
-  };
-}
-
-exports.default = Radium;
-module.exports = exports['default'];
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -8250,7 +8250,7 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 
 
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(9);
 
@@ -8987,7 +8987,7 @@ module.exports = ReactInputSelection;
 var _prodInvariant = __webpack_require__(3);
 
 var DOMLazyTree = __webpack_require__(19);
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 var React = __webpack_require__(21);
 var ReactBrowserEventEmitter = __webpack_require__(30);
 var ReactCurrentOwner = __webpack_require__(12);
@@ -10928,7 +10928,7 @@ module.exports = getIteratorFn;
 
 var React = __webpack_require__(6);
 var RowByTime = __webpack_require__(112);
-var Radium = __webpack_require__(16);
+var Radium = __webpack_require__(15);
 var StyleRoot = Radium.StyleRoot;
 var api = "http://schedule.barcampomaha.org";
 
@@ -10995,7 +10995,7 @@ module.exports = __webpack_require__(189);
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
-var Radium = __webpack_require__(16);
+var Radium = __webpack_require__(15);
 var Name = __webpack_require__(107);
 var Title = __webpack_require__(110);
 var SignupContent = __webpack_require__(109);
@@ -11162,7 +11162,7 @@ var Card = React.createClass({
       var currentState = React.createElement(
         'div',
         { style: box },
-        React.createElement(Name, { name: this.state.name }),
+        React.createElement(Name, { name: this.state.name, category: this.state.category }),
         React.createElement(CategoryImage, { image: this.state.catImageURL, bgColor: this.state.color }),
         React.createElement(ClearFloats, null),
         React.createElement(Title, { title: this.state.title }),
@@ -11194,7 +11194,7 @@ module.exports = Radium(Card);
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
-var Radium = __webpack_require__(16);
+var Radium = __webpack_require__(15);
 
 var media_width = parseInt("576");
 var media = '@media (min-width: ' + media_width + 'px)';
@@ -11303,6 +11303,10 @@ module.exports = Description;
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
+var Radium = __webpack_require__(15);
+
+var media_width = parseInt("576");
+var media = '@media (min-width: ' + media_width + 'px)';
 
 const name = {
   marginTop: "20px",
@@ -11315,8 +11319,16 @@ const name = {
   color: "#1e122b"
 };
 
+const trackStyle = {
+  fontWeight: "200",
+  marginBottom: "9px",
+  [media]: {
+    display: "none"
+  }
+};
+
 var Name = React.createClass({
-  displayName: "Name",
+  displayName: 'Name',
 
   getDefaultProps: function () {
     return {
@@ -11325,21 +11337,30 @@ var Name = React.createClass({
   },
   render: function () {
     return React.createElement(
-      "div",
-      { style: name },
-      this.props.name
+      'div',
+      null,
+      React.createElement(
+        'div',
+        { style: trackStyle },
+        this.props.category
+      ),
+      React.createElement(
+        'div',
+        { style: name },
+        this.props.name
+      )
     );
   }
 });
 
-module.exports = Name;
+module.exports = Radium(Name);
 
 /***/ }),
 /* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
-var Radium = __webpack_require__(16);
+var Radium = __webpack_require__(15);
 
 var media_width = parseInt("576");
 var media = '@media (min-width: ' + media_width + 'px)';
@@ -11384,7 +11405,7 @@ module.exports = Radium(PendingContent);
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
-var Radium = __webpack_require__(16);
+var Radium = __webpack_require__(15);
 
 var media_width = parseInt("576");
 var media = '@media (min-width: ' + media_width + 'px)';
@@ -11511,7 +11532,7 @@ module.exports = MobileModal;
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
-var Radium = __webpack_require__(16);
+var Radium = __webpack_require__(15);
 var Card = __webpack_require__(103);
 
 var media_width = parseInt("576");
@@ -11586,7 +11607,7 @@ module.exports = Radium(RowByTime);
 /***/ (function(module, exports, __webpack_require__) {
 
 var React = __webpack_require__(6);
-var Radium = __webpack_require__(16);
+var Radium = __webpack_require__(15);
 var api = "http://schedule.barcampomaha.org";
 
 var media_width = parseInt("576");
@@ -18316,7 +18337,7 @@ module.exports = FallbackCompositionState;
 
 
 
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -19781,7 +19802,7 @@ var AutoFocusUtils = __webpack_require__(177);
 var CSSPropertyOperations = __webpack_require__(179);
 var DOMLazyTree = __webpack_require__(19);
 var DOMNamespaces = __webpack_require__(43);
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 var DOMPropertyOperations = __webpack_require__(76);
 var EventPluginHub = __webpack_require__(23);
 var EventPluginRegistry = __webpack_require__(29);
@@ -21247,7 +21268,7 @@ module.exports = ReactDOMInput;
 
 
 
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 var ReactComponentTreeHook = __webpack_require__(8);
 
 var warning = __webpack_require__(2);
@@ -22216,7 +22237,7 @@ module.exports = {
 
 
 
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 var EventPluginRegistry = __webpack_require__(29);
 var ReactComponentTreeHook = __webpack_require__(8);
 
@@ -23126,7 +23147,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 
-var DOMProperty = __webpack_require__(15);
+var DOMProperty = __webpack_require__(16);
 var EventPluginHub = __webpack_require__(23);
 var EventPluginUtils = __webpack_require__(44);
 var ReactComponentEnvironment = __webpack_require__(47);

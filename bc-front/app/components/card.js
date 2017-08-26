@@ -172,7 +172,7 @@ var Card = React.createClass({
     } else if (this.state.state == "SET") {
       var currentState = (
         <div style={box}>
-          <Name name={this.state.name} />
+          <Name name={this.state.name} category={this.state.category} />
           <CategoryImage image={this.state.catImageURL} bgColor={this.state.color}/>
           <ClearFloats />
           <Title title={this.state.title} />
