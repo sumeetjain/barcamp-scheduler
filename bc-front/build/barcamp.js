@@ -11011,10 +11011,10 @@ var media_width = parseInt("576");
 var media = '@media (min-width: ' + media_width + 'px)';
 
 var colors = {
-  "Creative": "#c24442",
-  "Entrepreneur": "#efd0ce",
-  "Technology": "#26b5a1",
-  "Kitchen Sink": "#745b97"
+  "Entrepreneur": "#c24442",
+  "Creative": "#abd59e",
+  "Kitchen Sink": "#26b5a1",
+  "Technology": "#745b97"
 };
 
 var boxHoverStyle = {
@@ -11148,7 +11148,7 @@ var Card = React.createClass({
         { onClick: this.toggleModal, style: signupCardStyle },
         React.createElement(CategoryImage, { image: this.state.catImageURL, bgColor: this.state.color }),
         React.createElement(ClearFloats, null),
-        React.createElement(SignupContent, null)
+        React.createElement(SignupContent, { category: this.state.category })
       );
     } else if (this.state.state == "PENDING") {
       var currentState = React.createElement(
@@ -11309,7 +11309,6 @@ var media_width = parseInt("576");
 var media = '@media (min-width: ' + media_width + 'px)';
 
 const name = {
-  marginTop: "20px",
   fontSize: "16px",
   fontWeight: "200",
   display: "inline-block",
@@ -11322,9 +11321,8 @@ const name = {
 const trackStyle = {
   fontWeight: "200",
   marginBottom: "9px",
-  [media]: {
-    display: "none"
-  }
+  textTransform: "uppercase",
+  fontSize: "12px"
 };
 
 var Name = React.createClass({
@@ -11412,10 +11410,17 @@ var media = '@media (min-width: ' + media_width + 'px)';
 
 const signupTitleStyle = {
   fontSize: "1.5em",
-  textAlign: "center",
+  textAlign: "center"
+};
 
+const trackStyle = {
+  fontWeight: "200",
+  textAlign: "center",
+  textTransform: "uppercase",
+  fontSize: "12px",
+  marginBottom: "9px",
   [media]: {
-    marginTop: "44%"
+    marginTop: "40%"
   }
 };
 
@@ -11430,8 +11435,17 @@ var SignupContent = React.createClass({
   render: function () {
     return React.createElement(
       'div',
-      { style: signupTitleStyle },
-      this.props.title
+      null,
+      React.createElement(
+        'div',
+        { style: trackStyle },
+        this.props.category
+      ),
+      React.createElement(
+        'div',
+        { style: signupTitleStyle },
+        this.props.title
+      )
     );
   }
 });
@@ -11668,7 +11682,7 @@ const adminModal = {
   marginTop: "-250px",
   background: "#fff",
   borderTop: "10px solid #c24442",
-  borderRight: "10px solid #efd0ce",
+  borderRight: "10px solid #abd59e",
   borderBottom: "10px solid #26b5a1",
   borderLeft: "10px solid #745b97"
 };

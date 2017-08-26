@@ -15,10 +15,10 @@ var media_width = parseInt(APP_CONFIG.media_width);
 var media = '@media (min-width: ' + media_width + 'px)'
 
 var colors = {
-  "Creative":     "#c24442",
-  "Entrepreneur": "#efd0ce",
-  "Technology":   "#26b5a1",
-  "Kitchen Sink": "#745b97",
+  "Entrepreneur":     "#c24442",
+  "Creative": "#abd59e",
+  "Kitchen Sink":   "#26b5a1",
+  "Technology": "#745b97",
 }
 
 var boxHoverStyle = {
@@ -158,7 +158,7 @@ var Card = React.createClass({
         <div onClick={this.toggleModal} style={signupCardStyle}>
           <CategoryImage image={this.state.catImageURL} bgColor={this.state.color} />
           <ClearFloats />
-          <SignupContent />
+          <SignupContent category={this.state.category} />
         </div>
       );
     } else if (this.state.state == "PENDING") {

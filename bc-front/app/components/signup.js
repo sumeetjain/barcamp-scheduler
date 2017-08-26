@@ -60,7 +60,7 @@ const adminModal = {
   marginTop: "-250px",
   background: "#fff",
   borderTop: "10px solid #c24442",
-  borderRight: "10px solid #efd0ce",
+  borderRight: "10px solid #abd59e",
   borderBottom: "10px solid #26b5a1",
   borderLeft: "10px solid #745b97",
 }

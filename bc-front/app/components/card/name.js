@@ -6,7 +6,6 @@ var media = '@media (min-width: ' + media_width + 'px)'
 
 
 const name = {
-  marginTop: "20px",
   fontSize: "16px",
   fontWeight: "200",
   display: "inline-block",
@@ -19,9 +18,8 @@ const name = {
 const trackStyle = {
   fontWeight: "200",
   marginBottom: "9px",
-  [media]: {
-    display: "none"
-  }
+  textTransform: "uppercase",
+  fontSize: "12px",
 }
 
 var Name = React.createClass({

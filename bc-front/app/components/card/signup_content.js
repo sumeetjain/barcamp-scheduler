@@ -7,11 +7,18 @@ var media = '@media (min-width: ' + media_width + 'px)'
 const signupTitleStyle = {
   fontSize: "1.5em",
   textAlign: "center",
-
-  [media]: {
-    marginTop: "44%"
-  }
 };
+
+const trackStyle = {
+  fontWeight: "200",
+  textAlign: "center",
+  textTransform: "uppercase",
+  fontSize: "12px",
+  marginBottom: "9px",
+  [media]: {
+    marginTop: "40%"
+  }
+}
 
 var SignupContent = React.createClass({
   getDefaultProps: function () {
@@ -21,7 +28,10 @@ var SignupContent = React.createClass({
   },
   render: function() {
     return(
-      <div style={signupTitleStyle}>{this.props.title}</div>
+      <div>
+        <div style={trackStyle}>{this.props.category}</div>
+        <div style={signupTitleStyle}>{this.props.title}</div>
+      </div>
     );
   }
 });
